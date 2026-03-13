@@ -4,14 +4,23 @@
   --background: #f7f7f7;
   --bg-card: #ffffff;
   --foreground: #424242;
-  --foreground-hover: #333333; /* Slightly darker for Light Mode */
+  --foreground-hover: #333333;
   --text-secondary: #757575;
   --border-color: #d5d5d5;
   --content-width: 92%;
   
-  /* 0 0 sets the 'click' point to the top-left tip */
   --puffy-cursor: url("/cursor.png") 0 0, auto;
   --standard-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* The "Ultimate" Neumorphism: Combined Outer + Inner shadows */
+  --neu-complex: -6px -6px 12px rgba(255, 255, 255, 0.8), 
+                  6px 6px 12px rgba(0, 0, 0, 0.1), 
+                  inset -2px -2px 4px rgba(255, 255, 255, 0.9), 
+                  inset 2px 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* A "Pressed" state that feels deeper */
+  --neu-pressed: inset 6px 6px 12px rgba(0, 0, 0, 0.1), 
+                 inset -6px -6px 12px rgba(255, 255, 255, 0.8);
 }
 
 @media (min-width: 768px) { :root { --content-width: 720px; } }
@@ -22,10 +31,19 @@
   --background: #080808;
   --bg-card: #000000;
   --foreground: #bdbdbd;
-  --foreground-hover: #e0e0e0; /* Brighter for Dark Mode */
+  --foreground-hover: #e0e0e0;
   --text-secondary: #888888;
   --border-color: #1a1a1a;
   --puffy-cursor: url("/cursor.png") 0 0, auto;
+
+  /* Dark mode version using lower opacities for a glow effect */
+  --neu-complex: -6px -6px 12px rgba(255, 255, 255, 0.03), 
+                  6px 6px 12px rgba(0, 0, 0, 0.5), 
+                  inset -2px -2px 4px rgba(255, 255, 255, 0.05), 
+                  inset 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+  --neu-pressed: inset 6px 6px 12px rgba(0, 0, 0, 0.5), 
+                 inset -6px -6px 12px rgba(255, 255, 255, 0.03);
 }
 
 @theme {
@@ -38,11 +56,17 @@
   --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
   --default-transition-duration: 250ms;
   --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --color-testred: #ff0000;
+  
+  /* Usage: shadow-neu-complex */
+  --shadow-neu-complex: var(--neu-complex);
+  --shadow-neu-pressed: var(--neu-pressed);
 }
 
 /* Global Transitions */
 * {
-  transition-property: color, background-color, border-color, opacity, transform;
+  transition-property: color, background-color, border-color, opacity, transform, box-shadow;
   transition-timing-function: var(--default-transition-timing-function);
   transition-duration: var(--default-transition-duration);
 }
@@ -62,7 +86,10 @@ body {
   transition: background-color var(--standard-transition), color var(--standard-transition);
 }
 
-/* Forces everything to use the puffy cursor tip for clicking */
+@utility rounded-squircle {
+  border-radius: 20px;
+}
+
 a, button, [role="button"] {
   cursor: inherit;
 }

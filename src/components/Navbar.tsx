@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { FiLinkedin } from "react-icons/fi";
 import { PiTelegramLogo, PiGithubLogo } from "react-icons/pi";
-import { MdOutlineContentCopy } from "react-icons/md";
-import { TbFileCv } from "react-icons/tb";
+
+import { useTheme } from "@/providers/ThemeProvider";
 const SOCIAL_LINKS = [
   {
     id: 1,
@@ -27,19 +29,41 @@ const SOCIAL_LINKS = [
 const NAVIGATIONS = ["About", "Projects", "Experience"];
 
 const Navbar = () => {
+  const { isDark, toggleTheme } = useTheme();
   return (
     <nav className="w-full bg-background">
       {/* socials main container*/}
-      <div className="bg-card border-b border-border-subtle flex h-9">
+      <div className="bg-card border-b border-border-subtle flex h-9.25">
         {/* socials inner container */}
-        <div className="flex canvas-container items-center justify-end">
+        <div className="flex canvas-container items-center justify-end gap-4">
+          {/* Theme toggle button */}
+          <div
+            className="relative flex gap-4 border-border-subtle border px-3 py-1.5 rounded-full items-center overflow-hidden group bg-background"
+            onClick={toggleTheme}
+          >
+            {/* slider */}
+            <div
+              className="absolute h-[80%] w-[46%] bg-foreground rounded-full shadow-md z-0 left-1 transition-transform duration-300 ease-in-out"
+              style={{
+                transform: isDark ? "translateX(0)" : "translateX(98%)",
+              }}
+            />
+            <p
+              className={`relative z-10 text-[11px] font-medium transition-colors duration-300 
+              ${isDark ? "text-background" : "text-text-secondary"}`}
+            >
+              Dark
+            </p>
+            <p
+              className={`relative z-10 text-[11px] font-medium transition-colors duration-300 
+            ${!isDark ? "text-background" : "text-text-secondary"}`}
+            >
+              Light
+            </p>
+          </div>
 
-            
+          <div className="w-px h-4.5 bg-border-subtle"></div>
           <div className="flex gap-3 items-center">
-            <button className="bg-foreground hover:bg-foreground-hover py-1 px-2.5 rounded-full flex items-center">
-                <p className="text-[11px] tracking-wide text-background font-medium">Download CV</p>
-            </button>
-            <div className="w-px h-4.5 bg-border-subtle"></div>
             {/* socials links */}
             {SOCIAL_LINKS.map((link, index) => (
               <a href={link.href} key={index} target="_blank">
