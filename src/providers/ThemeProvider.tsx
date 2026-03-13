@@ -1,32 +1,15 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-const ThemeContext = createContext({
-  isDark: true,
-  toggleTheme: () => {},
-});
-
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isDark, setIsDark] = useState(true);
-
-  // Sync with the HTML class for Tailwind's dark: variant
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (isDark) {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-  }, [isDark]);
-
-  const toggleTheme = () => setIsDark((prev) => !prev);
-
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
+    <NextThemesProvider 
+      attribute="class" 
+      defaultTheme="dark" 
+      enableSystem={true}
+    >
       {children}
-    </ThemeContext.Provider>
+    </NextThemesProvider>
   );
-};
-
-export const useTheme = () => useContext(ThemeContext);
+}

@@ -3,7 +3,7 @@ const LandingPage = () => {
 
   return (
     <div>
-      s
+      
     </div>
   );
 };
