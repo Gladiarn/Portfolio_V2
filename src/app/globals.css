@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f7f7;
+  --bg-card: #ffffff;
+  --foreground: #424242;
+  --foreground-hover: #333333; /* Slightly darker for Light Mode */
+  --text-secondary: #757575;
+  --border-color: #d5d5d5;
+  --content-width: 92%;
+  
+  /* 0 0 sets the 'click' point to the top-left tip */
+  --puffy-cursor: url("/cursor.png") 0 0, auto;
+  --standard-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@theme inline {
+@media (min-width: 768px) { :root { --content-width: 720px; } }
+@media (min-width: 1024px) { :root { --content-width: 960px; } }
+@media (min-width: 1440px) { :root { --content-width: 1340px; } }
+
+.dark {
+  --background: #080808;
+  --bg-card: #000000;
+  --foreground: #bdbdbd;
+  --foreground-hover: #e0e0e0; /* Brighter for Dark Mode */
+  --text-secondary: #888888;
+  --border-color: #1a1a1a;
+  --puffy-cursor: url("/cursor.png") 0 0, auto;
+}
+
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-foreground-hover: var(--foreground-hover);
+  --color-card: var(--bg-card);
+  --color-secondary: var(--text-secondary);
+  --color-border-subtle: var(--border-color);
+  --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+  --default-transition-duration: 250ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global Transitions */
+* {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-timing-function: var(--default-transition-timing-function);
+  transition-duration: var(--default-transition-duration);
+}
+
+.canvas-container {
+  width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  cursor: var(--puffy-cursor);
+  transition: background-color var(--standard-transition), color var(--standard-transition);
+}
+
+/* Forces everything to use the puffy cursor tip for clicking */
+a, button, [role="button"] {
+  cursor: inherit;
 }
