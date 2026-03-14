@@ -107,7 +107,7 @@ const Navbar = () => {
       <div className="bg-background border-b border-border-subtle h-16.5 flex items-center">
         {/* main nav inner container */}
         <div className="flex canvas-container items-center justify-between">
-          <div className="flex justify-between w-full px-6">
+          <div className="flex justify-between w-full pr-6">
             {/* navigation */}
             <div className="flex gap-4 items-center">
               <div className="flex gap-2 items-center group">
@@ -130,7 +130,8 @@ const Navbar = () => {
                   <Link
                     href={`#${nav}`}
                     key={nav}
-                    className="text-foreground/70 font-medium text-[14.25px] tracking-wider hover:text-foreground"
+                    className="text-foreground/70 font-medium tracking-wider hover:text-foreground transition-colors 
+             text-[14.25px]"
                   >
                     {nav}
                   </Link>
@@ -153,7 +154,7 @@ const Navbar = () => {
           <div className="flex gap-6 items-center">
             <div className="w-px h-4.5 bg-border-subtle"></div>
             <div className="flex items-center gap-1.5 group">
-              <div className="w-1.5 h-1.5 rounded-full bg-red-600 translate-y-px group-hover:bg-green-600"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-red-600 translate-y-px group-hover:bg-indigo-500"></div>
               <p className="text-[12px] text-nowrap font-mono text-foreground/80 hover:text-foreground-hover">
                 Send a DM
               </p>
