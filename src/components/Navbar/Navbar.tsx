@@ -90,8 +90,8 @@ const Navbar = () => {
         {/* socials inner container */}
         <div className="flex canvas-container items-center justify-between">
           {/* Footer for header taglines small */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
-            <span className="text-secondary/60 text-[9px] uppercase tracking-widest font-semibold">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-px sm:gap-3">
+            <span className="text-secondary/60 min-[360px]:text-[9px] text-[7px] uppercase tracking-widest font-semibold">
               Leyte, PH —{" "}
               {time.toLocaleTimeString("en-US", {
                 hour: "2-digit",
@@ -118,9 +118,9 @@ const Navbar = () => {
               leftLabel="Dark"
               rightLabel="Light"
               labelClass="text-[8.5px]"
-              containerClass="px-3 py-2 gap-4 bg-background"
+              containerClass="px-3 py-1.5 gap-4 bg-background"
               pillWidth="w-[46%]"
-              activeTranslate="98%"
+              activeTranslate="100%"
             />
             <div className="w-px h-4.5 bg-border-subtle"></div>
             <div className="flex gap-3 items-center">
@@ -144,86 +144,84 @@ const Navbar = () => {
       </div>
 
       {/* main nav container */}
-      <div className="bg-background border-b border-border-subtle h-16.5 flex items-center">
+      <div className="bg-background border-b border-border-subtle h-16.5 flex items-center overflow-x-hidden">
         {/* main nav inner container */}
-        <div className="flex canvas-container items-center justify-between">
-          <div className="flex justify-between w-full px-6">
-            {/* navigation */}
-            <div className="flex gap-15 items-center">
-              <div className="flex gap-2 items-center group">
-                {/* Icon */}
-                <TbHexagonLetterG
-                  size={32}
-                  className="text-foreground transition-all duration-300 group-hover:text-indigo-500"
-                />
-
-                {/* Logo */}
-                <p className="font-logo text-[18px] font-medium tracking-tight text-foreground leading-none transition-all duration-300 group-hover:text-indigo-500">
-                  Gladiarn
-                </p>
-              </div>
-
-              <div className="hidden min-[1440px]:flex gap-8">
-                {NAVIGATIONS.map((nav) => (
-                  <Link
-                    href={`#${nav}`}
-                    key={nav}
-                    className="group relative text-foreground/60 font-medium tracking-tight transition-all duration-300 hover:text-foreground text-[13.25px] xl:text-[14.25px]"
-                  >
-                    {/* The "Blueprint" Indicator */}
-                    <span className="pointer-events-none absolute -left-3.5 top-1/2 -translate-y-[45%] text-[9px] font-mono text-foreground opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      //
-                    </span>
-
-                    {nav}
-                  </Link>
-                ))}
-              </div>
+        <div className="flex canvas-container items-center justify-between w-full px-6">
+          {/* LEFT: Logo & Nav */}
+          <div className="flex gap-4 md:gap-15 items-center shrink-0">
+            <div className="flex gap-2 items-center group">
+              <TbHexagonLetterG
+                size={32}
+                className="text-foreground transition-all group-hover:text-indigo-500"
+              />
+              <p className="font-logo text-[18px] font-medium tracking-tight text-foreground leading-none">
+                Gladiarn
+              </p>
             </div>
 
-            {/* switch formal mode */}
+            {/* Desktop Links */}
+            <div className="hidden min-[1440px]:flex gap-8">
+              {NAVIGATIONS.map((nav) => (
+                <Link
+                  href={`#${nav}`}
+                  key={nav}
+                  className="group relative text-foreground/60 font-medium tracking-tight hover:text-foreground text-[14.25px]"
+                >
+                  <span className="pointer-events-none absolute -left-3.5 top-1/2 -translate-y-[45%] text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-all">
+                    //
+                  </span>
+                  {nav}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT: Grouped Slider + Actions */}
+          <div className="flex items-center gap-4 sm:gap-6 shrink-0">
+            {/* Slider - Grouped near actions */}
             <Slider
               isActive={isFormal}
               onToggle={toggleMode}
               leftLabel="Personal"
               rightLabel="Formal"
-              containerClass="px-5.25 py-1.5 gap-8 bg-card"
+              containerClass="px-5.25 py-2 gap-8 bg-card hidden min-[1024px]:flex shrink-0"
               pillWidth="w-[48%]"
               activeTranslate="100%"
             />
-          </div>
 
-          <div className="flex gap-6 items-center">
-            <div className="w-px h-4.5 bg-border-subtle"></div>
+            <div className="w-px h-4.5 bg-border-subtle hidden min-[1024px]:flex"></div>
+
+            {/* Inquiries */}
             <a
               href="https://t.me/IanneTG"
               target="_blank"
-              className="flex items-center gap-2 group"
+              className="hidden min-[700px]:flex items-center gap-2 group shrink-0"
             >
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-40"></span>
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-indigo-500"></span>
               </span>
-
               <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-foreground/60 transition-all group-hover:text-foreground text-nowrap">
                 Inquiries // Send DM
               </p>
             </a>
+
+            {/* Schedule */}
             <a
               href="https://cal.com/ianne-carl-bulilan-gladiarn"
               target="_blank"
-              className="group relative flex items-center justify-center border border-border-subtle hover:border-foreground-hover/40 bg-card px-5 py-3 active:scale-[0.99]"
+              className="group relative hidden min-[480px]:flex items-center justify-center border border-border-subtle hover:border-foreground-hover/40 bg-card px-5 py-3 active:scale-[0.99] shrink-0"
             >
               <Corner pos="tl" />
               <Corner pos="tr" />
               <Corner pos="bl" />
               <Corner pos="br" />
-              <p className="text-foreground/80 text-[10px] uppercase tracking-[0.2em] font-bold transition-colors group-hover:text-foreground/90 text-nowrap">
+              <p className="text-foreground/80 text-[10px] uppercase tracking-[0.2em] font-bold text-nowrap">
                 Schedule a Call
               </p>
             </a>
+
             <MenuButton
-              // cn="min-[1440px]:hidden" removed for testing
               isOpen={isMenuOpen}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             />
