@@ -1,4 +1,5 @@
-import Corner from "../props/CornerPops"
+import Corner from "../props/Corner"
+
 
 const Personal = () => {
   return (

@@ -3,7 +3,7 @@ interface CornerCapProps {
   className?: string;
 }
 
-const CornerCap = ({ pos, className = "" }: CornerCapProps) => {
+const Corner = ({ pos, className = "" }: CornerCapProps) => {
   // We use -3px to perfectly center a 6px square on a 1px border
   const positions = {
     tl: "-top-[3.5px] -left-[3.5px]",
@@ -27,4 +27,4 @@ const CornerCap = ({ pos, className = "" }: CornerCapProps) => {
   );
 };
 
-export default CornerCap;
+export default Corner;

@@ -114,7 +114,7 @@ const Navbar = () => {
               onToggle={() => setTheme(isDark ? "light" : "dark")}
               leftLabel="Dark"
               rightLabel="Light"
-              labelClass="text-[10px]"
+              labelClass="text-[8.5px]"
               containerClass="px-3 py-1.25 gap-4 bg-background"
               pillWidth="w-[46%]"
               activeTranslate="98%"
@@ -165,9 +165,13 @@ const Navbar = () => {
                   <Link
                     href={`#${nav}`}
                     key={nav}
-                    className="text-foreground/70 font-medium tracking-wider hover:text-foreground transition-colors 
-             text-[12.25px] xl:text-[14.25px]"
+                    className="group relative text-foreground/50 font-medium tracking-tight transition-all duration-300 hover:text-foreground text-[13.25px] xl:text-[14.25px]"
                   >
+                    {/* The "Blueprint" Indicator */}
+                    <span className="absolute -left-3.5 top-1/2 -translate-y-[45%] text-[9px] font-mono text-indigo-500 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      //
+                    </span>
+
                     {nav}
                   </Link>
                 ))}
@@ -188,19 +192,25 @@ const Navbar = () => {
 
           <div className="flex gap-6 items-center">
             <div className="w-px h-4.5 bg-border-subtle"></div>
-            <div className="flex items-center gap-1.5 group">
-              <div className="w-1.5 h-1.5 rounded-full bg-red-600 translate-y-px group-hover:bg-indigo-500"></div>
-              <p className="text-[12px] text-nowrap font-mono text-foreground/80 hover:text-foreground-hover">
-                Send a DM
+            <div className="flex items-center gap-2 group cursor-pointer">
+              {/* The Dot: Smaller, indigo, and pulsing to feel "alive" */}
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-40"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-indigo-500"></span>
+              </span>
+
+              <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-foreground/60 transition-all group-hover:text-foreground text-nowrap">
+                Inquiries // Send DM
               </p>
             </div>
-            <button className="group flex items-center justify-center bg-foreground px-5 py-3 rounded-md transition-colors duration-300 hover:bg-foreground-hover active:scale-[0.98]">
-              <p className="text-background text-[13px] font-semibold tracking-wide whitespace-nowrap pointer-events-none -translate-y-0.5">
+            <button className="group relative flex items-center justify-center border border-foreground/10 bg-background px-5 py-2.5 transition-all duration-300 hover:border-foreground/30 active:scale-[0.98]">
+              {/* corner design */}
+              <div className="absolute -top-px -left-px w-1 h-1 border-t border-l border-foreground/40 group-hover:border-indigo-500" />
+              <div className="absolute -bottom-px -right-px w-1 h-1 border-b border-r border-foreground/40 group-hover:border-indigo-500" />
+
+              <p className="text-foreground/80 text-[10px] uppercase tracking-[0.2em] font-bold transition-colors group-hover:text-foreground text-nowrap">
                 Schedule a Call
               </p>
-            </button>
-            <button>
-              x
             </button>
           </div>
         </div>
