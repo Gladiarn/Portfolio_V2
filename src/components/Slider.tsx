@@ -8,7 +8,7 @@ interface SliderProps {
   containerClass?: string;
   pillWidth?: string;
   activeTranslate?: string;
-  labelClass?: string; // New prop for font size/style
+  labelClass?: string;
 }
 
 const Slider = ({
@@ -19,13 +19,14 @@ const Slider = ({
   containerClass = "",
   pillWidth = "w-[46%]",
   activeTranslate = "98%",
-  labelClass = "text-[11px]", // Default fallback
+  labelClass = "text-[11px]",
 }: SliderProps) => {
   return (
     <div
       className={`relative flex border-border-subtle border rounded-full items-center overflow-hidden group ${containerClass}`}
       onClick={onToggle}
     >
+      {/* THE PILL */}
       <div
         className={`absolute h-[80%] ${pillWidth} bg-foreground rounded-full shadow-md z-0 left-1 transition-transform duration-300 ease-in-out`}
         style={{
@@ -33,12 +34,19 @@ const Slider = ({
         }}
       />
       
-      <p className={`relative z-10 uppercase font-light transition-colors duration-300 tracking-widest translate-y-px ${labelClass} ${isActive ? "text-text-secondary" : "text-background"}`}>
-        {leftLabel}
-      </p>
-      <p className={`relative z-10 uppercase font-light transition-colors duration-300 tracking-widest translate-y-px ${labelClass} ${!isActive ? "text-text-secondary" : "text-background"}`}>
-        {rightLabel}
-      </p>
+      {/* LEFT LABEL */}
+      <div className="relative z-10 flex-1 flex items-center justify-center">
+        <p className={`uppercase font-light transition-colors duration-300 tracking-widest leading-none ${labelClass} ${isActive ? "text-text-secondary" : "text-background"}`}>
+          {leftLabel}
+        </p>
+      </div>
+
+      {/* RIGHT LABEL */}
+      <div className="relative z-10 flex-1 flex items-center justify-center">
+        <p className={`uppercase font-light transition-colors duration-300 tracking-widest leading-none ${labelClass} ${!isActive ? "text-text-secondary" : "text-background"}`}>
+          {rightLabel}
+        </p>
+      </div>
     </div>
   );
 };
