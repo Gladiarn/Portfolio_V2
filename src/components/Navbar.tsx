@@ -8,6 +8,14 @@ import { useTheme } from "next-themes";
 import Slider from "./Slider";
 import { useModeStore } from "@/hooks/useModeStore";
 import { TbHexagonLetterG } from "react-icons/tb";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 const SOCIAL_LINKS = [
   {
     id: 1,
@@ -32,6 +40,13 @@ const SOCIAL_LINKS = [
 const NAVIGATIONS = ["About", "Projects", "Experience"];
 
 const Navbar = () => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -70,35 +85,57 @@ const Navbar = () => {
       {/* socials main container*/}
       <div className="bg-card border-b border-border-subtle flex h-9.25">
         {/* socials inner container */}
-        <div className="flex canvas-container items-center justify-end gap-4">
-          {/* Theme Toggle */}
+        <div className="flex canvas-container items-center justify-between">
+          {/* Footer for header taglines small */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+            <span className="text-secondary/60 text-[9px] uppercase tracking-widest font-semibold">
+              Leyte, PH —{" "}
+              {time.toLocaleTimeString("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              })}
+            </span>
 
-          <Slider
-            isActive={!isDark}
-            onToggle={() => setTheme(isDark ? "light" : "dark")}
-            leftLabel="Dark"
-            rightLabel="Light"
-            labelClass="text-[10px]"
-            containerClass="px-3 py-1.25 gap-4 bg-background"
-            pillWidth="w-[46%]"
-            activeTranslate="98%"
-          />
-          <div className="w-px h-4.5 bg-border-subtle"></div>
-          <div className="flex gap-3 items-center">
-            {/* socials links */}
-            {SOCIAL_LINKS.map((link) => (
-              <a
-                href={link.href}
-                key={link.id}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <link.icon
-                  size={16}
-                  className="text-secondary/75 hover:text-secondary"
-                />
-              </a>
-            ))}
+            <div className="hidden sm:block w-px h-2.5 bg-border-subtle/50" />
+
+            <span className="text-foreground/50 text-[9px] uppercase tracking-widest font-semibold flex items-center gap-2">
+              <span className="relative flex h-1 w-1">
+                <span className="animate-[ping_3s_linear_infinite] absolute inline-flex h-full w-full rounded-full bg-green-500/30"></span>
+                <span className="relative inline-flex rounded-full h-1 w-1 bg-green-500/60"></span>
+              </span>
+              Open for projects
+            </span>
+          </div>
+          <div className="flex gap-4">
+            {/* Theme Toggle */}
+            <Slider
+              isActive={!isDark}
+              onToggle={() => setTheme(isDark ? "light" : "dark")}
+              leftLabel="Dark"
+              rightLabel="Light"
+              labelClass="text-[10px]"
+              containerClass="px-3 py-1.25 gap-4 bg-background"
+              pillWidth="w-[46%]"
+              activeTranslate="98%"
+            />
+            <div className="w-px h-4.5 bg-border-subtle"></div>
+            <div className="flex gap-3 items-center">
+              {/* socials links */}
+              {SOCIAL_LINKS.map((link) => (
+                <a
+                  href={link.href}
+                  key={link.id}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <link.icon
+                    size={16}
+                    className="text-secondary/75 hover:text-secondary"
+                  />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -109,7 +146,7 @@ const Navbar = () => {
         <div className="flex canvas-container items-center justify-between">
           <div className="flex justify-between w-full px-6">
             {/* navigation */}
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-15 items-center">
               <div className="flex gap-2 items-center group">
                 {/* Icon */}
                 <TbHexagonLetterG
@@ -123,14 +160,13 @@ const Navbar = () => {
                 </p>
               </div>
 
-              <div className="w-px h-4.5 bg-border-subtle"></div>
-
               <div className="flex gap-8">
                 {NAVIGATIONS.map((nav) => (
                   <Link
                     href={`#${nav}`}
                     key={nav}
-                    className="text-foreground/70 font-medium text-[14.25px] tracking-wider hover:text-foreground"
+                    className="text-foreground/70 font-medium tracking-wider hover:text-foreground transition-colors 
+             text-[14.25px]"
                   >
                     {nav}
                   </Link>
@@ -153,7 +189,7 @@ const Navbar = () => {
           <div className="flex gap-6 items-center">
             <div className="w-px h-4.5 bg-border-subtle"></div>
             <div className="flex items-center gap-1.5 group">
-              <div className="w-1.5 h-1.5 rounded-full bg-red-600 translate-y-px group-hover:bg-green-600"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-red-600 translate-y-px group-hover:bg-indigo-500"></div>
               <p className="text-[12px] text-nowrap font-mono text-foreground/80 hover:text-foreground-hover">
                 Send a DM
               </p>
