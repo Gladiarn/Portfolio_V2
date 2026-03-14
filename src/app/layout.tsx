@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import { ThemeProvider } from "@/providers/ThemeProvider";
+import type { Metadata } from "next";
 import { Syne } from "next/font/google";
-
+import Navbar from "@/components/Navbar/Navbar";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 const syne = Syne({
   variable: "--font-logo",
   subsets: ["latin"],
@@ -34,12 +33,12 @@ export default function RootLayout({
   return (
     // suppressHydrationWarning prevents errors when local storage themes are applied
     <html lang="en" suppressHydrationWarning>
-      <body className={`${syne.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${syne.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <ThemeProvider>
           <Navbar />
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>

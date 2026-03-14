@@ -6,8 +6,7 @@ const Formal = () => {
       <Corner pos="tl" />
       <Corner pos="tr" />
       <Corner pos="bl" />
-      <Corner pos="br" />
-      s
+      <Corner pos="br" />s
     </div>
   );
 };
