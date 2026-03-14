@@ -33,10 +33,10 @@ const Slider = ({
         }}
       />
       
-      <p className={`relative z-10 font-medium transition-colors duration-300 tracking-wide ${labelClass} ${isActive ? "text-text-secondary" : "text-background"}`}>
+      <p className={`relative z-10 uppercase font-light transition-colors duration-300 tracking-widest translate-y-px ${labelClass} ${isActive ? "text-text-secondary" : "text-background"}`}>
         {leftLabel}
       </p>
-      <p className={`relative z-10 font-medium transition-colors duration-300 tracking-wide ${labelClass} ${!isActive ? "text-text-secondary" : "text-background"}`}>
+      <p className={`relative z-10 uppercase font-light transition-colors duration-300 tracking-widest translate-y-px ${labelClass} ${!isActive ? "text-text-secondary" : "text-background"}`}>
         {rightLabel}
       </p>
     </div>
