@@ -34,7 +34,8 @@
   --foreground-hover: #e0e0e0;
   --text-secondary: #888888;
   --border-color: #1a1a1a;
-  --puffy-cursor: url("/cursor.png") 0 0, auto;
+  
+  --puffy-cursor: url("/cursor-light.png") 0 0, auto;
 
   /* Dark mode version using lower opacities for a glow effect */
   --neu-complex: -6px -6px 12px rgba(255, 255, 255, 0.03), 
@@ -53,6 +54,8 @@
   --color-card: var(--bg-card);
   --color-secondary: var(--text-secondary);
   --color-border-subtle: var(--border-color);
+
+  --font-logo: var(--font-logo), sans-serif;
   --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
   --default-transition-duration: 250ms;
   --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -66,7 +69,8 @@
 
 /* Global Transitions */
 * {
-  transition-property: background-color, border-color, opacity, transform, box-shadow;
+
+  transition-property: background-color, border-color, opacity, transform, box-shadow, width;
   transition-timing-function: var(--default-transition-timing-function);
   transition-duration: var(--default-transition-duration);
 }
@@ -84,8 +88,11 @@ body {
   min-height: 100vh;
   cursor: var(--puffy-cursor);
 }
+
 p, span, a, h1, h2, h3, svg {
-  transition: color 150ms ease-in-out, fill 150ms ease-in-out;
+  transition-property: color, fill, width, transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
 }
 
 @utility rounded-squircle {
