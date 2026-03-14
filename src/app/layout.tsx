@@ -3,6 +3,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import { Syne } from "next/font/google";
+
+const syne = Syne({
+  variable: "--font-logo",
+  subsets: ["latin"],
+  weight: ["700", "800"], // Go bold for logos
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +34,7 @@ export default function RootLayout({
   return (
     // suppressHydrationWarning prevents errors when local storage themes are applied
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${syne.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
           <Navbar />
           <main>
