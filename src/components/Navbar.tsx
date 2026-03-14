@@ -166,7 +166,7 @@ const Navbar = () => {
                     href={`#${nav}`}
                     key={nav}
                     className="text-foreground/70 font-medium tracking-wider hover:text-foreground transition-colors 
-             text-[14.25px]"
+             text-[12.25px] xl:text-[14.25px]"
                   >
                     {nav}
                   </Link>
@@ -198,6 +198,9 @@ const Navbar = () => {
               <p className="text-background text-[13px] font-semibold tracking-wide whitespace-nowrap pointer-events-none -translate-y-0.5">
                 Schedule a Call
               </p>
+            </button>
+            <button>
+              x
             </button>
           </div>
         </div>
