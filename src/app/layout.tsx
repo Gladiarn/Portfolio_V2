@@ -4,10 +4,11 @@ import type { Metadata } from "next";
 import { Syne } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+
 const syne = Syne({
   variable: "--font-logo",
   subsets: ["latin"],
-  weight: ["700", "800"], // Go bold for logos
+  weight: ["700", "800"],
 });
 
 const geistSans = Geist({
@@ -31,9 +32,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // suppressHydrationWarning prevents errors when local storage themes are applied
     <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${syne.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>

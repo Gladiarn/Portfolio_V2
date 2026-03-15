@@ -12,11 +12,10 @@ interface MobileMenuProps {
 
 const MobileMenu = ({ navigations, isFormal, toggleMode }: MobileMenuProps) => {
   return (
-    // min-[1440px]:hidden testing purposes removed
     <div className="bg-background border-b border-border-subtle">
       <div className="canvas-container py-6 flex flex-col gap-10">
-        {/* NAV LINKS */}
-        <div className="flex flex-col gap-1">
+        {/* NAV LINKS - Synchronized with Desktop Navbar (1440px) */}
+        <div className="flex flex-col gap-1 min-[1440px]:hidden">
           <p className="text-[9px] uppercase tracking-[0.3em] text-foreground/30 font-bold mb-4 px-2">
             Index // Navigation
           </p>
@@ -41,12 +40,11 @@ const MobileMenu = ({ navigations, isFormal, toggleMode }: MobileMenuProps) => {
           </div>
         </div>
 
-        {/* MODE TOGGLE */}
-        <div className="flex flex-col gap-4 items-start ">
+        {/* MODE TOGGLE - Synchronized with Navbar (1024px) */}
+        <div className="flex flex-col gap-4 items-start min-[1024px]:hidden border-t border-border-subtle/30 pt-5">
           <p className="text-[9px] uppercase tracking-[0.3em] text-foreground/30 font-bold px-2">
             Environment // Toggle
           </p>
-
           <Slider
             isActive={isFormal}
             onToggle={toggleMode}
@@ -60,16 +58,16 @@ const MobileMenu = ({ navigations, isFormal, toggleMode }: MobileMenuProps) => {
         </div>
 
         {/* ACTION BUTTONS */}
-        <div className="flex flex-col gap-4 border-t border-border-subtle/30 pt-8">
+        <div className="flex-col gap-4 border-t border-border-subtle/30 pt-5 min-[700px]:hidden flex">
           <p className="text-[9px] uppercase tracking-[0.3em] text-foreground/30 font-bold px-2">
             Connect // Booking
           </p>
-          <div className="flex items-center gap-6 px-2">
-            {/* Telegram */}
+          <div className="flex flex-col items-start min-[420px]:items-center gap-6 px-2 min-[420px]:flex-row">
+            {/* Telegram - Synchronized with Navbar (700px) */}
             <a
               href="https://t.me/IanneTG"
               target="_blank"
-              className="flex items-center gap-2 group no-underline!"
+              className="min-[700px]:hidden flex items-center gap-2 group no-underline!"
             >
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-40"></span>
@@ -80,13 +78,14 @@ const MobileMenu = ({ navigations, isFormal, toggleMode }: MobileMenuProps) => {
               </p>
             </a>
 
-            <div className="w-px h-4.5 bg-border-subtle"></div>
+            {/* Separator - Only visible if both buttons are hidden on desktop but visible here */}
+            <div className="hidden min-[420px]:max-[480px]:block w-px h-4.5 bg-border-subtle"></div>
 
-            {/* Schedule Button */}
+            {/* Schedule Button - Synchronized with Navbar (480px) */}
             <a
               href="https://cal.com/ianne-carl-bulilan-gladiarn"
               target="_blank"
-              className="group relative flex items-center justify-center border border-border-subtle hover:border-foreground-hover/40 bg-card px-5 py-3 active:scale-[0.99] no-underline!"
+              className="min-[480px]:hidden group relative flex items-center justify-center border border-border-subtle hover:border-foreground-hover/40 bg-card px-5 py-3 active:scale-[0.99] no-underline!"
             >
               <Corner pos="tl" />
               <Corner pos="tr" />

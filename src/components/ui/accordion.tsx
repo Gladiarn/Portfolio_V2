@@ -1,7 +1,7 @@
 "use client"
 
 import type * as React from "react"
-import { Accordion as AccordionPrimitive } from "radix-ui"
+import * as AccordionPrimitive from "@radix-ui/react-accordion"
 
 import { cn } from "@/lib/utils"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
@@ -63,12 +63,21 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="overflow-hidden text-sm data-open:animate-accordion-down data-closed:animate-accordion-up"
+      /* FIX: We set a fixed height ONLY during the animation state.
+         When 'open', we switch height to 'auto' so it responds to window resizing perfectly.
+      */
+      className={cn(
+        "overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+        "data-[state=open]:h-auto" 
+      )}
       {...props}
     >
       <div
         className={cn(
-          "h-(--radix-accordion-content-height) pt-0 pb-2.5 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+          /* By removing the min-h based on the stale variable, 
+             the div will always match the ACTUAL height of the MobileMenu.
+          */
+          "pt-0 pb-2.5 [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
           className
         )}
       >
