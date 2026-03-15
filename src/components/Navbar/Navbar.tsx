@@ -102,7 +102,7 @@ const Navbar = () => {
 
             <div className="hidden sm:block w-px h-2.5 bg-border-subtle/50" />
 
-            <span className="text-foreground/50 text-[9px] uppercase tracking-widest font-semibold flex items-center gap-2">
+            <span className="text-foreground/50 min-[360px]:text-[9px] text-[7px] uppercase tracking-widest font-semibold flex items-center gap-2">
               <span className="relative flex h-1 w-1">
                 <span className="animate-[ping_3s_linear_infinite] absolute inline-flex h-full w-full rounded-full bg-green-500/30"></span>
                 <span className="relative inline-flex rounded-full h-1 w-1 bg-green-500/60"></span>
@@ -154,7 +154,7 @@ const Navbar = () => {
                 size={32}
                 className="text-foreground transition-all group-hover:text-indigo-500"
               />
-              <p className="font-logo text-[18px] font-medium tracking-tight text-foreground leading-none">
+              <p className="font-logo text-[18px] font-medium tracking-tight text-foreground leading-none group-hover:text-indigo-500">
                 Gladiarn
               </p>
             </div>
@@ -165,7 +165,7 @@ const Navbar = () => {
                 <Link
                   href={`#${nav}`}
                   key={nav}
-                  className="group relative text-foreground/60 font-medium tracking-tight hover:text-foreground text-[14.25px]"
+                  className="group relative text-foreground/70 font-medium tracking-tight hover:text-foreground text-[14.25px]"
                 >
                   <span className="pointer-events-none absolute -left-3.5 top-1/2 -translate-y-[45%] text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-all">
                     //
@@ -210,6 +210,7 @@ const Navbar = () => {
             <a
               href="https://cal.com/ianne-carl-bulilan-gladiarn"
               target="_blank"
+              /* Remove duration-250 and transition-all from here. Let the CSS handle it. */
               className="group relative hidden min-[480px]:flex items-center justify-center border border-border-subtle hover:border-foreground-hover/40 bg-card px-5 py-3 active:scale-[0.99] shrink-0"
             >
               <Corner pos="tl" />
@@ -223,6 +224,7 @@ const Navbar = () => {
 
             <MenuButton
               isOpen={isMenuOpen}
+              cn="flex min-[1440px]:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             />
           </div>
@@ -237,7 +239,7 @@ const Navbar = () => {
         onValueChange={(value) => setIsMenuOpen(value === "mobile-menu")}
       >
         <AccordionItem value="mobile-menu" className="border-none">
-          <AccordionContent className="pb-0">
+          <AccordionContent className="pb-0 min-[1440px]:hidden">
             <MobileMenu
               navigations={NAVIGATIONS}
               isFormal={isFormal}

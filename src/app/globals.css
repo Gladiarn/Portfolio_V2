@@ -5,7 +5,6 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* YOUR ORIGINAL COLORS */
   --background: #f7f7f7;
   --bg-card: #ffffff;
   --foreground: #424242;
@@ -14,10 +13,9 @@
   --border-color: #d5d5d5;
   --content-width: 92%;
 
-  --puffy-cursor: url("/cursor.png") 0 0, auto;
+  --puffy-cursor: url("/cursor.png") 3 3, auto;
   --standard-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* YOUR NEUMORPHISM */
   --neu-complex:
     -6px -6px 12px rgba(255, 255, 255, 0.8), 6px 6px 12px rgba(0, 0, 0, 0.1),
     inset -2px -2px 4px rgba(255, 255, 255, 0.9),
@@ -27,7 +25,6 @@
     inset 6px 6px 12px rgba(0, 0, 0, 0.1),
     inset -6px -6px 12px rgba(255, 255, 255, 0.8);
 
-  /* SHADCN REQUIRED VARS (Mapped to your colors to keep UI working) */
   --radius: 0.625rem;
   --card: var(--bg-card);
   --card-foreground: var(--foreground);
@@ -41,48 +38,25 @@
   --ring: var(--foreground);
 }
 
-@media (min-width: 768px) {
-  :root {
-    --content-width: 720px;
-  }
-}
-@media (min-width: 1024px) {
-  :root {
-    --content-width: 960px;
-  }
-}
-@media (min-width: 1440px) {
-  :root {
-    --content-width: 1340px;
-  }
-}
+@media (min-width: 768px) { :root { --content-width: 720px; } }
+@media (min-width: 1024px) { :root { --content-width: 960px; } }
+@media (min-width: 1440px) { :root { --content-width: 1340px; } }
 
 .dark {
-  /* YOUR DARK COLORS */
   --background: #080808;
   --bg-card: #000000;
   --foreground: #bdbdbd;
   --foreground-hover: #e0e0e0;
   --text-secondary: #888888;
   --border-color: #1a1a1a;
-
-  --puffy-cursor: url("/cursor-light.png") 0 0, auto;
-
+  --puffy-cursor: url("/cursor-light.png") 3 3, auto;
   --neu-complex:
     -6px -6px 12px rgba(255, 255, 255, 0.03), 6px 6px 12px rgba(0, 0, 0, 0.5),
     inset -2px -2px 4px rgba(255, 255, 255, 0.05),
     inset 2px 2px 4px rgba(0, 0, 0, 0.3);
-
   --neu-pressed:
     inset 6px 6px 12px rgba(0, 0, 0, 0.5),
     inset -6px -6px 12px rgba(255, 255, 255, 0.03);
-
-  /* SHADCN DARK MAPPING */
-  --card: var(--bg-card);
-  --card-foreground: var(--foreground);
-  --primary: var(--foreground);
-  --primary-foreground: var(--background);
-  --border: var(--border-color);
 }
 
 @theme {
@@ -101,14 +75,37 @@
 
   --default-transition-duration: 250ms;
   --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* FIXED ANIMATION MAPPING */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
 }
 
-/* Global Transitions */
+/* 1. Global Transitions */
 * {
-  transition-property:
-    background-color, border-color, opacity, transform, box-shadow, width;
+  transition-property: background-color, border-color, opacity, transform, box-shadow;
   transition-timing-function: var(--default-transition-timing-function);
   transition-duration: var(--default-transition-duration);
+}
+
+/* 2. Text/Icon Sync */
+p, span, a, h1, h2, h3, svg {
+  transition-property: color, fill, transform;
+  transition-duration: var(--default-transition-duration);
+  transition-timing-function: var(--default-transition-timing-function);
+}
+
+a {
+  transition-property: color, background-color, border-color, transform, box-shadow !important;
 }
 
 .canvas-container {
@@ -128,31 +125,9 @@ body {
   width: 100%;
 }
 
-p,
-span,
-a,
-h1,
-h2,
-h3,
-svg {
-  transition-property: color, fill, width, transform;
-  transition-duration: 150ms;
-  transition-timing-function: ease-in-out;
-}
+@utility rounded-squircle { border-radius: 20px; }
+a, button, [role="button"] { cursor: inherit; }
 
-@utility rounded-squircle {
-  border-radius: 20px;
-}
-
-a,
-button,
-[role="button"] {
-  cursor: inherit;
-}
-
-/* Keep shadcn animations but remove the auto-border on everything */
 @layer base {
-  body {
-    @apply bg-background text-foreground;
-  }
+  body { @apply bg-background text-foreground; }
 }
