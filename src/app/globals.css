@@ -98,14 +98,15 @@
 }
 
 /* 2. Text/Icon Sync */
-p, span, a, h1, h2, h3, svg {
-  transition-property: color, fill, transform;
+p, span, h1, h2, h3, svg {
+  transition-property: color, fill, transform, background-color, border-color;
   transition-duration: var(--default-transition-duration);
   transition-timing-function: var(--default-transition-timing-function);
 }
-
-a {
-  transition-property: color, background-color, border-color, transform, box-shadow !important;
+a, button {
+  transition-property: color, background-color, border-color, transform, box-shadow, opacity !important;
+  transition-duration: var(--default-transition-duration);
+  transition-timing-function: var(--default-transition-timing-function);
 }
 
 .canvas-container {
