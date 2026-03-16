@@ -226,7 +226,9 @@ const Formal = () => {
       </section>
 
       {/* Row 2: Experience / Projects (Collapses at 1200px) */}
-      <section className="grid grid-cols-2 max-[1200px]:grid-cols-1 border-b border-border-subtle">
+      <section className="relative grid grid-cols-2 max-[1200px]:grid-cols-1 border-b border-border-subtle">
+        <Corner pos="bl" />
+        <Corner pos="br" />
         <div
           className={`${responsivePadding} max-[1200px]:p-6 border-r max-[1200px]:border-r-0 max-[1200px]:border-b border-border-subtle flex flex-col`}
         >
@@ -236,7 +238,7 @@ const Formal = () => {
             </h2>
             <div className="h-px flex-1 bg-border-subtle/50" />
           </div>
-          <div className="overflow-y-auto max-h-220 pr-4 mt-3">
+          <div className="overflow-y-auto max-h-212 pr-4 mt-3">
             {personalInformation.experiences.map((exp, index) => (
               <ExperienceCard
                 key={index}
@@ -257,7 +259,7 @@ const Formal = () => {
             <div className="h-px flex-1 bg-border-subtle/50" />
           </div>
 
-          <div className="mt-9 overflow-y-auto max-h-220 pr-2 custom-scrollbar flex flex-col gap-6 rounded-md">
+          <div className="mt-8 overflow-y-auto max-h-212 pr-2 custom-scrollbar flex flex-col gap-4 rounded-md">
             {personalInformation.projects.map((project, index) => (
               // Wrapping in a div with shrink-0 prevents the "flattening"
               <div key={index} className="shrink-0">
