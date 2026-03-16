@@ -1,11 +1,11 @@
 import Corner from "@/components/props/Corner";
-import { FiGithub, FiLinkedin } from "react-icons/fi";
-import { PiTelegramLogo } from "react-icons/pi";
 import UpperInfo from "./Parts/UpperInfo";
-import { SiReaddotcv } from "react-icons/si";
 import Techstack from "./Parts/Techstack";
 import ExperienceCard from "./Parts/ExperienceCard";
 import ProjectCard from "./Parts/ProjectCard";
+import EducationCard from "./Parts/EducationCard";
+import ResearchCard from "./Parts/ResearchCard";
+import ContributionGraph from "./Parts/ContributionGraph";
 const Formal = () => {
   const responsivePadding = "p-4 sm:p-6 md:p-8 lg:p-12";
   const personalInformation = {
@@ -184,14 +184,56 @@ const Formal = () => {
         technologies: ["React", "Framer Motion", "JSON Server"],
       },
     ],
+    education: [
+      {
+        degree: "Bachelor of Science in Information Technology",
+        institution: "ACLC College of Tacloban",
+        location: "Tacloban City, Leyte",
+        period: "2022 — 2025",
+        status: "Graduated",
+        awards: [
+          "Best in **HTML5 & CSS**",
+          "Best in **Web Development**",
+          'Best in **Capstone Presenter** with the title **"Cloud-based Van Travel and Tours Tracking and Monitoring System of Grand Tours Tacloban City"**',
+        ],
+      },
+      {
+        degree: "Bachelor of Science in Information Technology",
+        institution: "University of Rizal System Binangonan",
+        location: "Binangonan, Rizal",
+        period: "2020 — 2022",
+        status: "Transferred",
+        awards: ["Dean's Lister (First Year)"],
+      },
+    ] as const,
+    activeResearch: [
+      {
+        category: "Workflow Automation",
+        index: "01",
+        items: [
+          { name: "n8n Automation Logic", status: "Building" },
+          { name: "AI Prompt Engineering", status: "Exploring" },
+        ],
+      },
+      {
+        category: "DevOps & Infrastructure",
+        index: "02",
+        items: [
+          { name: "Docker Containerization", status: "Learning" },
+          { name: "CI/CD Pipeline Design", status: "Building" },
+        ],
+      },
+      {
+        category: "Core Engineering",
+        index: "03",
+        items: [
+          { name: "C# Fundamentals", status: "Relearning" },
+          { name: "PostgreSQL & Prisma", status: "Refining" },
+        ],
+      },
+    ] as const,
   };
 
-  const SOCIAL_CONFIG = {
-    GitHub: { icon: FiGithub, color: "#333333" },
-    LinkedIn: { icon: FiLinkedin, color: "#0077b5" },
-    Telegram: { icon: PiTelegramLogo, color: "#0088cc" },
-    CV: { icon: SiReaddotcv, color: "#0061FF" },
-  };
   return (
     <div className="relative canvas-container mx-auto bg-card min-h-screen border-l border-r border-b border-border-subtle flex flex-col">
       <Corner pos="tl" />
@@ -261,7 +303,6 @@ const Formal = () => {
 
           <div className="mt-8 overflow-y-auto max-h-212 pr-2 custom-scrollbar flex flex-col gap-4 rounded-md">
             {personalInformation.projects.map((project, index) => (
-              // Wrapping in a div with shrink-0 prevents the "flattening"
               <div key={index} className="shrink-0">
                 <ProjectCard
                   title={project.title}
@@ -278,18 +319,66 @@ const Formal = () => {
       {/* Row 3: Education / Certs (Collapses at 1200px) */}
       <section className="grid grid-cols-2 max-[1200px]:grid-cols-1">
         <div
-          className={`${responsivePadding} max-[1200px]:p-6 border-r max-[1200px]:border-r-0 max-[1200px]:border-b border-border-subtle`}
+          className={`${responsivePadding} max-[1200px]:p-6 max-[1200px]:border-b border-border-subtle`}
         >
-          <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
-            05 // Education
-          </h2>
-          <div className="mt-6 min-h-25">{/* Education Content */}</div>
+          <div className="flex items-center gap-2">
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
+              05 // Education
+            </h2>
+            <div className="h-px flex-1 bg-border-subtle/50" />
+          </div>
+          <div className="mt-3 min-h-25 flex flex-col">
+            {personalInformation.education.map((edu, index) => (
+              <EducationCard
+                key={index}
+                degree={edu.degree}
+                institution={edu.institution}
+                location={edu.location}
+                period={edu.period}
+                status={edu.status}
+                awards={edu.awards}
+              />
+            ))}
+          </div>
         </div>
+
         <div className={`${responsivePadding} max-[1200px]:p-6`}>
-          <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
-            06 // Certifications
-          </h2>
-          <div className="mt-6 min-h-25">{/* Certs Content */}</div>
+          <div className="flex items-center gap-2">
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
+              06 // Active Research
+            </h2>
+            <div className="h-px flex-1 bg-border-subtle/50" />
+          </div>
+          <div className="mt-6 min-h-25 flex flex-col gap-2">
+            {personalInformation.activeResearch.map((group) => (
+              <ResearchCard
+                key={group.index}
+                category={group.category}
+                items={group.items}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border-subtle last:border-b-0 border-t">
+        <div className="relative bg-secondary/5 border-b border-border-subtle px-8 py-4 flex items-center justify-between">
+          <Corner pos="tl" />
+          <Corner pos="tr" />
+          <Corner pos="bl" />
+          <Corner pos="br" />
+          <div className="flex items-center gap-2">
+            <h3 className="text-foreground font-bold text-[11px] uppercase tracking-wider">
+              07 // Development Activity
+            </h3>
+          </div>
+          <span className="text-[10px] text-secondary/70 font-mono uppercase">
+            Source: GitHub_API
+          </span>
+        </div>
+
+        <div className={responsivePadding}>
+          <ContributionGraph />
         </div>
       </section>
     </div>

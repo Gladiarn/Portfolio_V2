@@ -8,10 +8,10 @@ const Personal = () => {
       <Corner pos="tr" />
       <Corner pos="bl" />
       <Corner pos="br" />
-
       {/* <div className="opacity-40 text-[10px] uppercase tracking-widest">
         Section // Personal
-      </div> */}s
+      </div> */}
+      s
     </div>
   );
 };

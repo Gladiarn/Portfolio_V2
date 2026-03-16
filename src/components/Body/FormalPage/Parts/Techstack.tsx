@@ -16,7 +16,7 @@ const Techstack = ({ stack }: TechstackProps) => {
           {/* Category Header */}
           <div className="flex items-center gap-2">
             <div className="w-1 h-1 bg-indigo-500 rounded-full" />
-            <h3 className="text-foreground font-bold text-[10px] uppercase tracking-wider">
+            <h3 className="text-foreground font-bold text-[11px] uppercase tracking-wider">
               {group.category}
             </h3>
           </div>

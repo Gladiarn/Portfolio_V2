@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface ModeState {
   isFormal: boolean;
@@ -13,7 +13,7 @@ export const useModeStore = create<ModeState>()(
       toggleMode: () => set((state) => ({ isFormal: !state.isFormal })),
     }),
     {
-      name: 'mode-storage',
-    }
-  )
+      name: "mode-storage",
+    },
+  ),
 );
