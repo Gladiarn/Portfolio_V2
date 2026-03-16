@@ -23,7 +23,7 @@ const ExperienceCard = ({
     return text.split(/(\*\*.*?\*\*)/).map((part, i) => {
       if (part.startsWith("**") && part.endsWith("**")) {
         return (
-          <strong key={i} className="font-bold text-foreground">
+          <strong key={part} className="font-bold text-foreground">
             {part.slice(2, -2)}
           </strong>
         );
@@ -77,7 +77,7 @@ const ExperienceCard = ({
           <ul className="flex flex-col gap-3 border-l-2 border-indigo-500/20 ml-1 pl-5 mt-2">
             {contributions.map((point, i) => (
               <li
-                key={i}
+                key={point}
                 className="text-secondary text-[14px] leading-relaxed relative"
               >
                 <span className="text-indigo-500 absolute -left-5.75">•</span>

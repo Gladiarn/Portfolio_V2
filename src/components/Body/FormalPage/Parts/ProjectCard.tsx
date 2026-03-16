@@ -1,7 +1,7 @@
 "use client";
 import Corner from "@/components/props/Corner";
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FiGithub } from "react-icons/fi";
 
 interface ProjectCardProps {
