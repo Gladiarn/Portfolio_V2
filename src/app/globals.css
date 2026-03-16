@@ -38,9 +38,21 @@
   --ring: var(--foreground);
 }
 
-@media (min-width: 768px) { :root { --content-width: 720px; } }
-@media (min-width: 1024px) { :root { --content-width: 960px; } }
-@media (min-width: 1440px) { :root { --content-width: 1340px; } }
+@media (min-width: 768px) {
+  :root {
+    --content-width: 720px;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --content-width: 960px;
+  }
+}
+@media (min-width: 1440px) {
+  :root {
+    --content-width: 1340px;
+  }
+}
 
 .dark {
   --background: #080808;
@@ -81,30 +93,47 @@
   --animate-accordion-up: accordion-up 0.2s ease-out;
 
   @keyframes accordion-down {
-    from { height: 0; }
-    to { height: var(--radix-accordion-content-height); }
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
   @keyframes accordion-up {
-    from { height: var(--radix-accordion-content-height); }
-    to { height: 0; }
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
   }
 }
 
 /* 1. Global Transitions */
 * {
-  transition-property: background-color, border-color, opacity, transform, box-shadow, width, height; 
+  transition-property:
+    background-color, border-color, opacity, transform, box-shadow, width,
+    height;
   transition-timing-function: var(--default-transition-timing-function);
   transition-duration: var(--default-transition-duration);
 }
 
 /* 2. Text/Icon Sync */
-p, span, h1, h2, h3, svg {
+p,
+span,
+h1,
+h2,
+h3,
+svg {
   transition-property: color, fill, transform, background-color, border-color;
   transition-duration: var(--default-transition-duration);
   transition-timing-function: var(--default-transition-timing-function);
 }
-a, button {
-  transition-property: color, background-color, border-color, transform, box-shadow, opacity !important;
+a,
+button {
+  transition-property:
+    color, background-color, border-color, transform, box-shadow, opacity !important;
   transition-duration: var(--default-transition-duration);
   transition-timing-function: var(--default-transition-timing-function);
 }
@@ -126,9 +155,52 @@ body {
   width: 100%;
 }
 
-@utility rounded-squircle { border-radius: 20px; }
-a, button, [role="button"] { cursor: inherit; }
+@utility rounded-squircle {
+  border-radius: 20px;
+}
+a,
+button,
+[role="button"] {
+  cursor: inherit;
+}
 
 @layer base {
-  body { @apply bg-background text-foreground; }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* scrollbar */
+
+/* 1. Global Scrollbar Styling */
+html {
+  /* Reserves space globally so layout doesn't jump when content loads */
+  scrollbar-gutter: stable;
+}
+
+/* Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 6px; /* Slightly wider for the main body for better UX */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+  border: 2px solid transparent; /* Creates a "floating" effect */
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-secondary);
+  border: 0px solid transparent; /* Gets thicker on hover */
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
 }

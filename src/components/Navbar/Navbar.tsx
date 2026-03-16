@@ -232,13 +232,13 @@ const Navbar = () => {
               href="https://cal.com/ianne-carl-bulilan-gladiarn"
               target="_blank"
               /* Remove duration-250 and transition-all from here. Let the CSS handle it. */
-              className="group relative hidden min-[480px]:flex items-center justify-center border border-border-subtle hover:border-foreground-hover/40 bg-card px-5 py-3 active:scale-[0.99] shrink-0"
+              className="group relative hidden min-[480px]:flex items-center hover:bg-foreground justify-center border border-border-subtle hover:border-foreground-hover/40 bg-card px-5 py-3 active:scale-[0.99] shrink-0"
             >
               <Corner pos="tl" />
               <Corner pos="tr" />
               <Corner pos="bl" />
               <Corner pos="br" />
-              <p className="text-foreground/80 text-[10px] uppercase tracking-[0.2em] font-bold text-nowrap">
+              <p className="text-foreground/80 text-[10px] uppercase tracking-[0.2em] font-bold text-nowrap group-hover:text-background">
                 Schedule a Call
               </p>
             </a>
