@@ -92,7 +92,7 @@
 
 /* 1. Global Transitions */
 * {
-  transition-property: background-color, border-color, opacity, transform, box-shadow;
+  transition-property: background-color, border-color, opacity, transform, box-shadow, width, height; 
   transition-timing-function: var(--default-transition-timing-function);
   transition-duration: var(--default-transition-duration);
 }
