@@ -78,7 +78,7 @@ const ExperienceCard = ({
             {contributions.map((point, i) => (
               <li
                 key={i}
-                className="text-secondary/90 text-[14px] leading-relaxed relative"
+                className="text-secondary text-[14px] leading-relaxed relative"
               >
                 <span className="text-indigo-500 absolute -left-5.75">•</span>
                 {renderBoldText(point)}
