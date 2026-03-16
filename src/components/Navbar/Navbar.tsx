@@ -63,18 +63,39 @@ const Navbar = () => {
   if (!mounted) {
     return (
       <nav className="w-full bg-background animate-pulse">
+        {/* Top Bar Skeleton */}
         <div className="bg-card/50 border-b border-border-subtle h-9.25 flex items-center">
-          <div className="canvas-container flex justify-end gap-4">
-            <div className="h-6 w-24 bg-border-subtle rounded-full" />
-            <div className="h-4 w-20 bg-border-subtle rounded" />
+          <div className="canvas-container flex justify-between items-center w-full px-6">
+            <div className="h-2 w-32 bg-border-subtle/40 rounded" />
+            <div className="flex gap-4 items-center">
+               <div className="h-5 w-24 bg-border-subtle/40 rounded-full" />
+               <div className="h-4 w-20 bg-border-subtle/40 rounded" />
+            </div>
           </div>
         </div>
+
+        {/* Main Nav Skeleton */}
         <div className="bg-background border-b border-border-subtle h-16.5 flex items-center">
-          <div className="canvas-container flex justify-between w-full">
-            <div className="flex gap-8">
-              <div className="h-4 w-32 bg-border-subtle rounded" />
+          <div className="canvas-container flex justify-between items-center w-full px-6">
+            {/* Logo + Links */}
+            <div className="flex gap-15 items-center">
+              <div className="flex gap-2 items-center">
+                <div className="h-8 w-8 bg-border-subtle/50 rounded-lg" />
+                <div className="h-4 w-24 bg-border-subtle/50 rounded" />
+              </div>
+              <div className="hidden min-[1440px]:flex gap-8">
+                <div className="h-3 w-12 bg-border-subtle/30 rounded" />
+                <div className="h-3 w-12 bg-border-subtle/30 rounded" />
+                <div className="h-3 w-12 bg-border-subtle/30 rounded" />
+              </div>
             </div>
-            <div className="h-6 w-28 bg-border-subtle rounded-full" />
+
+            {/* Right Actions */}
+            <div className="flex items-center gap-6">
+              <div className="h-9 w-40 bg-border-subtle/40 rounded-lg hidden min-[1024px]:block" />
+              <div className="h-10 w-32 bg-border-subtle/50 rounded hidden min-[480px]:block" />
+              <div className="h-8 w-8 bg-border-subtle/50 rounded md:hidden" />
+            </div>
           </div>
         </div>
       </nav>
@@ -224,7 +245,7 @@ const Navbar = () => {
 
             <MenuButton
               isOpen={isMenuOpen}
-              cn="flex min-[1440px]:hidden"
+              cn="flex min-[1440px]:hidden mr-1"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             />
           </div>

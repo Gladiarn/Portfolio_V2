@@ -1,7 +1,7 @@
 "use client";
 
-import Formal from "@/components/Body/Formal";
-import Personal from "@/components/Body/Personal";
+import Formal from "@/components/Body/FormalPage/Formal";
+import Personal from "@/components/Body/PersonalPage/Personal";
 import { useModeStore } from "@/hooks/useModeStore";
 
 const LandingPage = () => {
