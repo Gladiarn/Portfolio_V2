@@ -1,16 +1,11 @@
 import Corner from "@/components/props/Corner";
-import Image from "next/image";
-import { FaCheck } from "react-icons/fa6";
-import { CiLocationOn } from "react-icons/ci";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
-import { PiTelegramLogo, PiXLogo } from "react-icons/pi";
-import SocialButton from "@/components/Buttons/SocialButton";
-import { CgMail } from "react-icons/cg";
+import { PiTelegramLogo } from "react-icons/pi";
 import UpperInfo from "./Parts/UpperInfo";
-
+import { SiReaddotcv } from "react-icons/si";
+import Techstack from "./Parts/Techstack";
 const Formal = () => {
   const responsivePadding = "p-4 sm:p-6 md:p-8 lg:p-12";
-  const collapsedPadding = "max-[1200px]:p-6 max-[1024px]:p-5";
   const personalInformation = {
     name: "Ianne Carl Bulilan",
     location: "Tanauan, Leyte, Philippines",
@@ -23,19 +18,104 @@ const Formal = () => {
         url: "https://www.linkedin.com/in/ianne-carl-bulilan-321421349/",
       },
       { name: "Telegram", url: "https://t.me/IanneTG" },
-      { name: "X", url: "https://x.com/iannetg" },
+      {
+        name: "CV",
+        url: "https://www.dropbox.com/scl/fi/gztvn9t18w3jslsjgnbof/Ianne-CV.pdf?rlkey=kp003h9zfhrqkoiiu3gyl6iyl&st=3j7giyr0&dl=0",
+      },
     ],
     bio: [
       "A *Full-Stack Web Developer* focused on *Next.js, TypeScript, and Tailwind CSS*. I specialize in translating *Figma* designs into high-performance, responsive interfaces using *shadcn/ui*.",
       "I engineer full-stack platforms like *TourConnect* and *DepHelp* using *Node.js, Express, and MongoDB*. My workflow includes *Postman* for API testing and *Git* for version control, with a focus on seamless deployment via *Vercel*.",
       "I leverage *AI* to optimize user experiences, specifically integrating the *Google Gemini API* for automated support. Combining *JavaScript and Django*, I build robust infrastructure that bridges the gap between smart logic and scalable web apps.",
     ],
+    techStack: [
+      {
+        category: "Frontend & UI",
+        skills: [
+          "TypeScript",
+          "JavaScript",
+          "React",
+          "Next.js",
+          "Tailwind CSS",
+          "Zustand",
+          "shadcn/ui",
+          "Framer Motion",
+          "Leaflet.js",
+          "Chart.js",
+        ],
+      },
+      {
+        category: "Backend & Logic",
+        skills: [
+          "Node.js",
+          "Express.js",
+          "Python",
+          "Django",
+          "Laravel",
+          "REST APIs",
+          "Serverless Functions",
+        ],
+      },
+      {
+        category: "Database & Storage",
+        skills: [
+          "PostgreSQL",
+          "MongoDB",
+          "Mongoose",
+          "Prisma",
+          "Supabase",
+          "Redis",
+        ],
+      },
+      {
+        category: "Security & Identity",
+        skills: [
+          "NextAuth",
+          "JWT Auth",
+          "Middleware",
+          "OAuth 2.0",
+          "Refresh Tokens",
+          "bcrypt",
+          "Role-Based Access (RBAC)",
+        ],
+      },
+      {
+        category: "AI & Intelligence",
+        skills: [
+          "Google Gemini API",
+          "Prompt Engineering",
+          "Automated Support Logic",
+          "LLM Integration",
+        ],
+      },
+      {
+        category: "DevTools & Systems",
+        skills: [
+          "Git",
+          "GitHub",
+          "GitLab",
+          "VS Code",
+          "Cursor IDE",
+          "npm / pnpm",
+          "Terminal (Zsh)",
+        ],
+      },
+      {
+        category: "Design & Prototyping",
+        skills: [
+          "Figma",
+          "UI/UX Design",
+          "Wireframing",
+          "Responsive Architecture",
+        ],
+      },
+    ],
   };
   const SOCIAL_CONFIG = {
     GitHub: { icon: FiGithub, color: "#333333" },
     LinkedIn: { icon: FiLinkedin, color: "#0077b5" },
     Telegram: { icon: PiTelegramLogo, color: "#0088cc" },
-    X: { icon: PiXLogo, color: "#000000" },
+    CV: { icon: SiReaddotcv, color: "#0061FF" },
   };
   return (
     <div className="relative canvas-container mx-auto bg-card min-h-screen border-l border-r border-b border-border-subtle flex flex-col">
@@ -56,10 +136,17 @@ const Formal = () => {
         </div>
 
         <div className={`${responsivePadding} max-[1024px]:p-6`}>
-          <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
-            02 // Tech Stack
-          </h2>
-          <div className="mt-6 min-h-37.5">{/* Tech Stack Content */}</div>
+          <div className="flex items-center gap-2">
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
+              02 // Tech Stack
+            </h2>
+            <div className="h-px flex-1 bg-border-subtle/50" />
+          </div>
+
+          <div className="mt-8 min-h-37.5">
+            {/* Passing the techStack array directly */}
+            <Techstack stack={personalInformation.techStack} />
+          </div>
         </div>
       </section>
 

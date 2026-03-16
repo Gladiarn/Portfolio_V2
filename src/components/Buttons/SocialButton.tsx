@@ -23,9 +23,6 @@ const SocialButton = ({
       target="_blank"
       rel="noreferrer"
       className="group relative flex h-11 w-11 items-center justify-center bg-card border border-border-subtle shadow-sm transition-all duration-300 hover:text-white hover:border-transparent"
-      style={{
-        transitionTimingFunction: "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
-      }}
     >
       {/* Decorative Corners */}
       <Corner pos="tl" />

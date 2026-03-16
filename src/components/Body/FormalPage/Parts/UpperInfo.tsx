@@ -7,6 +7,7 @@ import { CgMail } from "react-icons/cg";
 import SocialButton from "@/components/Buttons/SocialButton";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { PiTelegramLogo, PiXLogo } from "react-icons/pi";
+import { SiReaddotcv } from "react-icons/si";
 
 interface Social {
   name: string;
@@ -28,7 +29,7 @@ const SOCIAL_CONFIG = {
   GitHub: { icon: FiGithub, color: "#333333" },
   LinkedIn: { icon: FiLinkedin, color: "#0077b5" },
   Telegram: { icon: PiTelegramLogo, color: "#0088cc" },
-  X: { icon: PiXLogo, color: "#000000" },
+  CV: { icon: SiReaddotcv, color: "#0061FF" },
 };
 
 const UpperInfo = ({ personalInformation }: UpperInfoProps) => {
