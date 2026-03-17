@@ -235,7 +235,7 @@ const Formal = () => {
   };
 
   return (
-    <div className="relative canvas-container mx-auto bg-card min-h-screen border-l border-r border-b border-border-subtle flex flex-col">
+    <div className="relative canvas-container mx-auto bg-card min-h-screen border-l border-r border-border-subtle flex flex-col">
       <Corner pos="tl" />
       <Corner pos="tr" />
       <Corner pos="bl" />
@@ -327,7 +327,7 @@ const Formal = () => {
             </h2>
             <div className="h-px flex-1 bg-border-subtle/50" />
           </div>
-          <div className="mt-3 min-h-25 flex flex-col">
+          <div className="mt-3 max-h-129 overflow-y-auto flex flex-col">
             {personalInformation.education.map((edu, index) => (
               <EducationCard
                 key={index}
@@ -349,7 +349,7 @@ const Formal = () => {
             </h2>
             <div className="h-px flex-1 bg-border-subtle/50" />
           </div>
-          <div className="mt-6 min-h-25 flex flex-col gap-2">
+          <div className="mt-6 max-h-129 overflow-y-auto flex flex-col gap-2">
             {personalInformation.activeResearch.map((group) => (
               <ResearchCard
                 key={group.index}
@@ -361,14 +361,14 @@ const Formal = () => {
         </div>
       </section>
 
-      <section className="border-b border-border-subtle last:border-b-0 border-t">
+      <section className="border-border-subtle border-t">
         <div className="relative bg-secondary/5 border-b border-border-subtle px-8 py-4 flex items-center justify-between">
           <Corner pos="tl" />
           <Corner pos="tr" />
           <Corner pos="bl" />
           <Corner pos="br" />
           <div className="flex items-center gap-2">
-            <h3 className="text-foreground font-bold text-[11px] uppercase tracking-wider">
+            <h3 className="text-[11px] tracking-wider font-bold uppercase text-secondary/50">
               07 // Development Activity
             </h3>
           </div>
@@ -377,7 +377,7 @@ const Formal = () => {
           </span>
         </div>
 
-        <div className={responsivePadding}>
+        <div className={`${responsivePadding} `}>
           <ContributionGraph />
         </div>
       </section>
