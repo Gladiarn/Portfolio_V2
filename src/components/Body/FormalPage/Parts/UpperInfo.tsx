@@ -52,8 +52,8 @@ const UpperInfo = ({ personalInformation }: UpperInfoProps) => {
       {/* Picture Container */}
       <div
         className="relative overflow-hidden rounded-md bg-muted shrink-0 
-        h-23 w-23 md:h-25.5 md:w-25.5 lg:h-28 lg:w-28 
-        transition-all duration-300 shadow-sm"
+  h-23 w-23 md:h-25.5 md:w-25.5 lg:h-28 lg:w-28 
+  transition-all duration-300 shadow-sm group/pic"
       >
         <Image
           src="/picture.png"
@@ -61,8 +61,23 @@ const UpperInfo = ({ personalInformation }: UpperInfoProps) => {
           fill
           sizes="(max-width: 768px) 92px, (max-width: 1200px) 102px, 112px"
           priority
-          className="object-cover image-render-fix grayscale-30 hover:grayscale-0"
+          className="object-cover image-render-fix grayscale-30"
         />
+
+        {/* 2. The Reveal Curtain (Full color) */}
+        <div className="absolute inset-0 z-10 h-0 group-hover/pic:h-full transition-all duration-500 ease-in-out overflow-hidden bottom-0 top-auto">
+          <div className="absolute bottom-0 left-0 w-full h-23 md:h-25.5 lg:h-28">
+            <Image
+              src="/picture.png"
+              alt="Profile Reveal"
+              fill
+              className="object-cover image-render-fix grayscale-0"
+              sizes="(max-width: 768px) 92px, (max-width: 1200px) 102px, 112px"
+            />
+          </div>
+          {/* Thin accent line at the top of the rising curtain */}
+          <div className="absolute top-0 left-0 w-full h-px bg-indigo-500/50" />
+        </div>
       </div>
 
       {/* Information Container */}

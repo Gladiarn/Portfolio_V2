@@ -26,7 +26,7 @@ const ResearchCard = ({ category, items }: ResearchCardProps) => {
         {items.map((item, i) => (
           <div key={i} className="flex items-end justify-between group">
             <div className="flex flex-col gap-1">
-              <span className="text-[14px] font-bold text-secondary group-hover:text-foreground transition-colors uppercase tracking-tight">
+              <span className="text-[14px] font-bold text-foreground/75 group-hover:text-foreground transition-colors uppercase tracking-tight">
                 {item.name}
               </span>
               <span className="text-[10px] text-secondary/70 font-medium uppercase tracking-widest">

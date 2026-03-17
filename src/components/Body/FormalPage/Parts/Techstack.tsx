@@ -19,6 +19,7 @@ const Techstack = ({ stack }: TechstackProps) => {
             <h3 className="text-foreground font-bold text-[11px] uppercase tracking-wider">
               {group.category}
             </h3>
+            <div className="h-px flex-1 bg-border-subtle/50 ml-2" />
           </div>
 
           {/* Pills */}

@@ -32,10 +32,9 @@ const ContributionGraph = () => {
       if (tempStreak > longest) longest = tempStreak;
     });
 
-    // Check last two days to determine if streak is active
     const lastIdx = contributions.length - 1;
     if (
-      contributions[lastIdx].count > 0 ||
+      contributions[lastIdx]?.count > 0 ||
       contributions[lastIdx - 1]?.count > 0
     ) {
       for (let i = lastIdx; i >= 0; i--) {
@@ -56,12 +55,37 @@ const ContributionGraph = () => {
 
   return (
     <div className="w-full">
-      <div className="mb-10 max-w-137.5">
-        <p className="text-[11px] text-secondary/70 uppercase tracking-widest leading-relaxed">
-          <span className="text-indigo-500 font-black mr-2">Heatmap //</span>A
-          visual index of development velocity. Each node maps a 24-hour cycle,
-          where color depth correlates to commit density and system activity.
-        </p>
+      {/* Header Section */}
+      <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+        <div className="max-w-137.5">
+          <p className="text-[14px] text-secondary leading-relaxed">
+            <span className="text-indigo-500 font-black mr-2 uppercase tracking-widest text-[12px]">
+              {"Heatmap //"}
+            </span>
+            A visual representation of my creative output and technical growth
+            over the years. Each square maps a 24-hour cycle; the intensity of
+            the color indicates the volume of code pushed, systems built, and
+            problems solved on that day.
+          </p>
+        </div>
+
+        {/* MOBILE ONLY BUTTONS: Hidden on large screens (lg) */}
+        <div className="flex lg:hidden gap-2">
+          {years.map((year) => (
+            <button
+              key={year}
+              type="button"
+              onClick={() => setSelectedYear(year)}
+              className={`px-3 py-1 text-[9px] font-bold uppercase transition-all rounded-sm border ${
+                selectedYear === year
+                  ? "bg-foreground text-background border-foreground"
+                  : "text-secondary/70 border-border-subtle/50"
+              }`}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="flex items-center gap-6">
@@ -82,6 +106,7 @@ const ContributionGraph = () => {
           )}
         </div>
 
+        {/* DESKTOP ONLY SIDEBAR: Hidden on smaller screens (max-lg) */}
         <div className="flex flex-col gap-1.5 shrink-0 min-w-17.5 max-lg:hidden">
           <span className="text-[8px] text-secondary/40 uppercase font-black tracking-widest mb-1 ml-1">
             Index
@@ -89,8 +114,9 @@ const ContributionGraph = () => {
           {years.map((year) => (
             <button
               key={year}
+              type="button"
               onClick={() => setSelectedYear(year)}
-              className={`px-3 py-2 text-[10px] font-bold uppercase transition-all rounded-sm border ${
+              className={`px-3 py-2 text-[11px] font-bold uppercase transition-all rounded-sm border ${
                 selectedYear === year
                   ? "bg-foreground text-background border-foreground"
                   : "text-secondary/70 border-border-subtle/50 hover:border-indigo-500"
@@ -102,15 +128,16 @@ const ContributionGraph = () => {
         </div>
       </div>
 
+      {/* Stats Section */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border-subtle/50 pt-10 mt-10 justify-items-center">
         {[
           { label: "Total Contributions", value: liveStats.total },
           { label: "Active Period", value: "2024 — Pres." },
           { label: "Current Streak", value: `${liveStats.currentStreak} Days` },
           { label: "Longest Streak", value: `${liveStats.longestStreak} Days` },
-        ].map((stat, i) => (
+        ].map((stat) => (
           <div
-            key={i}
+            key={stat.label}
             className="flex flex-col items-center gap-1.5 text-center"
           >
             <span className="text-[10px] text-secondary/60 uppercase tracking-widest font-medium">

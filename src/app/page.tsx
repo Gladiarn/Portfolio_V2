@@ -7,7 +7,7 @@ import { useModeStore } from "@/hooks/useModeStore";
 const LandingPage = () => {
   const { isFormal } = useModeStore();
   return (
-    <div className="bg-background w-full">
+    <div className="bg-background w-full flex flex-col">
       {isFormal ? <Formal /> : <Personal />}
     </div>
   );

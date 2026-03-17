@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Syne } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import Footer from "@/components/Navbar/Footer";
 
 const syne = Syne({
   variable: "--font-logo",
@@ -38,8 +39,11 @@ export default function RootLayout({
         className={`${syne.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <Navbar />
-          <main>{children}</main>
+          <div className="w-full flex flex-col">
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
