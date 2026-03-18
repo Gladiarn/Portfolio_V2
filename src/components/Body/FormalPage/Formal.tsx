@@ -308,7 +308,6 @@ const Formal = () => {
                   title={project.title}
                   image={project.image}
                   githubUrl={project.link}
-                  index={index}
                 />
               </div>
             ))}
