@@ -13,7 +13,6 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
 } from "@/components/ui/accordion";
 import MenuButton from "../Buttons/MenuButton";
 import Corner from "../props/Corner";

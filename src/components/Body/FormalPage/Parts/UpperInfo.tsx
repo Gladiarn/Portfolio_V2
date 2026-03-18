@@ -144,7 +144,7 @@ const UpperInfo = ({ personalInformation }: UpperInfoProps) => {
         <div className="pt-9 flex flex-col gap-9">
           <div className="flex items-center gap-2">
             <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
-              01 // About
+              // About
             </p>
             <div className="h-px flex-1 bg-border-subtle/50" />
           </div>

@@ -255,7 +255,7 @@ const Formal = () => {
         <div className={`${responsivePadding} max-[1024px]:p-6`}>
           <div className="flex items-center gap-2">
             <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
-              02 // Tech Stack
+              // Tech Stack
             </h2>
             <div className="h-px flex-1 bg-border-subtle/50" />
           </div>
@@ -276,7 +276,7 @@ const Formal = () => {
         >
           <div className="flex items-center gap-2">
             <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
-              03 // Experience
+              // Experience
             </h2>
             <div className="h-px flex-1 bg-border-subtle/50" />
           </div>
@@ -296,7 +296,7 @@ const Formal = () => {
         <div className={`${responsivePadding} max-[1200px]:p-6 flex flex-col`}>
           <div className="flex items-center gap-2">
             <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
-              04 // Projects
+              // Projects
             </h2>
             <div className="h-px flex-1 bg-border-subtle/50" />
           </div>
@@ -323,7 +323,7 @@ const Formal = () => {
         >
           <div className="flex items-center gap-2">
             <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
-              05 // Education
+              // Education
             </h2>
             <div className="h-px flex-1 bg-border-subtle/50" />
           </div>
@@ -345,7 +345,7 @@ const Formal = () => {
         <div className={`${responsivePadding} max-[1200px]:p-6`}>
           <div className="flex items-center gap-2">
             <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-secondary/50">
-              06 // Active Research
+              // Active Research
             </h2>
             <div className="h-px flex-1 bg-border-subtle/50" />
           </div>
@@ -369,7 +369,7 @@ const Formal = () => {
           <Corner pos="br" />
           <div className="flex items-center gap-2">
             <h3 className="text-[11px] tracking-wider font-bold uppercase text-secondary/50">
-              07 // Development Activity
+              // Development Activity
             </h3>
           </div>
           <span className="text-[10px] text-secondary/70 font-mono uppercase">
