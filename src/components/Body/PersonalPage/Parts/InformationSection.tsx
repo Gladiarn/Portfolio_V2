@@ -80,7 +80,7 @@ const InformationSection = () => {
       ],
     },
     {
-      category: "In_Progress_Integration",
+      category: "In_Progress_RESEARCH",
       status: "learning",
       icons: [
         { name: "n8n", icon: <SiN8N /> },

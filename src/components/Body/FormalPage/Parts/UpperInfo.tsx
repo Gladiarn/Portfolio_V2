@@ -119,7 +119,6 @@ const UpperInfo = ({ personalInformation }: UpperInfoProps) => {
                   name={social.name}
                   href={social.url}
                   icon={config.icon}
-                  brandColor={config.color}
                 />
               );
             })}

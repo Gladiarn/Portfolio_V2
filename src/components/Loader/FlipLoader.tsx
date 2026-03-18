@@ -37,7 +37,7 @@ const FlipLoader = ({ onComplete }: { onComplete: () => void }) => {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}
-      className="fixed inset-0 z-[9999] h-screen w-screen flex flex-col items-center justify-center bg-background antialiased overflow-hidden touch-none select-none"
+      className="fixed inset-0 z-9999 h-screen w-screen flex flex-col items-center justify-center bg-background antialiased overflow-hidden touch-none select-none"
     >
       {/* 1. Subtle Radial Glow */}
       <div
