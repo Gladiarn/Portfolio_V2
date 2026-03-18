@@ -18,7 +18,7 @@ const HERO_CONTENT = {
     firstName: "IANNE",
     lastName: "CARL.",
     signature: {
-      top: "FULLSTACK_DEV",
+      top: "FULLSTACK_WEB_DEV",
       bottom: "Based in Philippines",
     },
     description: [
@@ -60,7 +60,7 @@ const HeroSection = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] min-h-[75vh]">
         {/* LEFT PANEL */}
-        <div className="bg-foreground p-10 sm:p-16 lg:p-24 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-border-subtle relative overflow-hidden">
+        <div className="bg-foreground p-8 sm:p-12 lg:p-20 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-border-subtle relative overflow-hidden">
           {/* Textures */}
           <div
             className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
@@ -70,7 +70,7 @@ const HeroSection = () => {
           />
           <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-indigo-500/10 blur-[120px] rounded-full" />
           <div
-            className="absolute inset-0 opacity-[0.07] pointer-events-none"
+            className="absolute inset-0 opacity-20 pointer-events-none"
             style={{
               backgroundImage: `linear-gradient(to right, #888 1px, transparent 1px), linear-gradient(to bottom, #888 1px, transparent 1px)`,
               backgroundSize: "60px 60px",
@@ -102,11 +102,9 @@ const HeroSection = () => {
               </p>
             </div>
           </motion.div>
-
-          {/* FIXED VERTICAL BRANDING: Centered vertically on the right edge */}
           <div className="absolute right-0 top-0 bottom-0 w-24 hidden lg:flex items-center justify-center pointer-events-none">
             <span
-              className="text-[10px] font-black tracking-[1em] text-background/5 uppercase"
+              className="text-[10px] font-black tracking-[1em] text-background/10 uppercase"
               style={{
                 writingMode: "vertical-rl",
                 transform: "rotate(180deg)",
@@ -118,7 +116,7 @@ const HeroSection = () => {
         </div>
 
         {/* RIGHT PANEL */}
-        <div className="p-10 sm:p-16 lg:p-24 flex flex-col justify-center bg-card relative group overflow-hidden">
+        <div className="p-8 2xl:p-20 flex flex-col justify-center bg-card relative group overflow-hidden">
           <div
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
@@ -200,13 +198,12 @@ const HeroSection = () => {
       </div>
 
       {/* BOTTOM BAR */}
-      <div className="relative border-t border-border-subtle bg-card py-7 px-10 lg:px-24 flex flex-col md:flex-row md:items-center justify-between gap-8">
+      <div className="relative border-t border-border-subtle bg-card py-7 px-8 sm:px-12 lg:px-20 flex flex-col md:flex-row md:items-center justify-between gap-8">
         <Corner pos="tl" />
         <Corner pos="tr" />
         <div className="flex items-center gap-4">
           <span className="text-foreground/60 text-[10px] font-black uppercase tracking-[0.3em]">
-            {" "}
-            // CREATED WITH{" "}
+            // CREATED WITH
           </span>
           <div className="h-px w-12 bg-border-subtle" />
         </div>
@@ -226,8 +223,7 @@ const HeroSection = () => {
                 className="text-foreground/70 group-hover:text-indigo-500 transition-all duration-300 group-hover:scale-110"
               />
               <span className="text-[11px] font-bold uppercase tracking-widest text-foreground/50 group-hover:text-foreground transition-colors">
-                {" "}
-                {tool.name}{" "}
+                {tool.name}
               </span>
             </motion.div>
           ))}

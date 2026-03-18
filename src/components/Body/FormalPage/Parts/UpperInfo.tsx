@@ -61,7 +61,7 @@ const UpperInfo = ({ personalInformation }: UpperInfoProps) => {
           fill
           sizes="(max-width: 768px) 92px, (max-width: 1200px) 102px, 112px"
           priority
-          className="object-cover image-render-fix grayscale-30"
+          className="object-cover image-render-fix grayscale-50"
         />
 
         {/* 2. The Reveal Curtain (Full color) */}
@@ -128,15 +128,24 @@ const UpperInfo = ({ personalInformation }: UpperInfoProps) => {
           {/* Email Button */}
           <a
             href={`mailto:${personalInformation.email}`}
-            className="mt-2 relative flex h-10 w-25 items-center justify-center overflow-hidden rounded-md bg-foreground text-[10px] font-bold uppercase tracking-[0.2em] transition-all! duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group hover:w-50 hover:border-accent"
+            className="group relative flex items-center gap-4 py-2 w-fit transition-all duration-500"
           >
-            <span className="flex items-center gap-2 text-background absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all! duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-left-full group-hover:text-accent whitespace-nowrap">
-              <CgMail size={13} />
-              Email Me
-            </span>
-            <span className="text-background absolute -right-[150%] top-1/2 -translate-y-1/2 translate-x-1/2 font-mono text-[11px] lowercase tracking-normal transition-all! duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:right-1/2 group-hover:text-accent whitespace-nowrap">
-              {personalInformation.email}
-            </span>
+            <div className="h-10 w-[1.5px] bg-indigo-500/30 group-hover:bg-indigo-500 transition-colors duration-500" />
+
+            <div className="flex flex-col justify-center">
+
+              <span className="text-[10px] font-black tracking-[0.3em] text-indigo-500 uppercase">
+                Email Me
+              </span>
+
+              {/* 3. The Email - Sharp & Readable */}
+              <span className="text-[13px] font-mono text-foreground/40 group-hover:text-foreground transition-colors duration-500">
+                {personalInformation.email}
+              </span>
+            </div>
+
+            {/* 4. Subtle Border Reveal (Optional, keep for structure) */}
+            <div className="absolute inset-0 border border-transparent group-hover:border-border-subtle/50 -z-10 transition-all duration-500" />
           </a>
         </div>
 
