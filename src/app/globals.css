@@ -5,182 +5,94 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* 1. Core Colors - Modern Neutrals */
   --background: #f7f7f7;
   --bg-card: #ffffff;
   --foreground: #424242;
-  --foreground-hover: #333333;
   --text-secondary: #757575;
   --border-color: #d5d5d5;
+  
+  /* 2. Layout & Interactions */
   --content-width: 92%;
-
   --puffy-cursor: url("/cursor.png") 3 3, auto;
-  --standard-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
-  --neu-complex:
-    -6px -6px 12px rgba(255, 255, 255, 0.8), 6px 6px 12px rgba(0, 0, 0, 0.1),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.9),
-    inset 2px 2px 4px rgba(0, 0, 0, 0.05);
-
-  --neu-pressed:
-    inset 6px 6px 12px rgba(0, 0, 0, 0.1), inset -6px -6px 12px
-    rgba(255, 255, 255, 0.8);
-
   --radius: 0.625rem;
-  --card: var(--bg-card);
-  --card-foreground: var(--foreground);
-  --popover: var(--bg-card);
-  --popover-foreground: var(--foreground);
-  --primary: var(--foreground);
-  --primary-foreground: var(--background);
-  --secondary: var(--text-secondary);
-  --border: var(--border-color);
-  --input: var(--border-color);
-  --ring: var(--foreground);
+
+  /* 3. Performance Transitions (GPU Optimized) */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --standard-transition: 200ms var(--ease-out-expo);
 }
 
-@media (min-width: 768px) {
-  :root {
-    --content-width: 720px;
-  }
-}
-@media (min-width: 1024px) {
-  :root {
-    --content-width: 960px;
-  }
-}
-@media (min-width: 1440px) {
-  :root {
-    --content-width: 1340px;
-  }
-}
+@media (min-width: 768px) { :root { --content-width: 720px; } }
+@media (min-width: 1024px) { :root { --content-width: 960px; } }
+@media (min-width: 1440px) { :root { --content-width: 1340px; } }
 
 .dark {
   --background: #080808;
   --bg-card: #000000;
   --foreground: #bdbdbd;
-  --foreground-hover: #e0e0e0;
   --text-secondary: #888888;
   --border-color: #1a1a1a;
   --puffy-cursor: url("/cursor-light.png") 3 3, auto;
-  --neu-complex:
-    -6px -6px 12px rgba(255, 255, 255, 0.03), 6px 6px 12px rgba(0, 0, 0, 0.5),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.05),
-    inset 2px 2px 4px rgba(0, 0, 0, 0.3);
-  --neu-pressed:
-    inset 6px 6px 12px rgba(0, 0, 0, 0.5), inset -6px -6px 12px
-    rgba(255, 255, 255, 0.03);
 }
 
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-foreground-hover: var(--foreground-hover);
   --color-card: var(--bg-card);
   --color-secondary: var(--text-secondary);
   --color-border-subtle: var(--border-color);
 
-  --font-logo: var(--font-logo), sans-serif;
   --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
-
-  --shadow-neu-complex: var(--neu-complex);
-  --shadow-neu-pressed: var(--neu-pressed);
-
-  --default-transition-duration: 250ms;
-  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* FIXED ANIMATION MAPPING */
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
+  
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 1. Global Transitions */
-* {
-  transition-property:
-    background-color, border-color, opacity, transform, box-shadow, width,
-    height;
-  transition-timing-function: var(--default-transition-timing-function);
+/* 4. Optimized Interactive Transitions */
+/* Targets only properties that don't trigger layout shifts */
+a, button, [role="button"] {
+  transition-property: color, opacity, transform, background-color, border-color;
   transition-duration: var(--default-transition-duration);
+  transition-timing-function: var(--default-transition-timing-function);
+  cursor: inherit;
 }
 
-/* 2. Text/Icon Sync */
-p,
-span,
-h1,
-h2,
-h3,
+/* Header/Text snappiness */
+h1, h2, h3, p, span {
+  transition: color 150ms ease, opacity 150ms ease;
+}
+
 svg {
-  transition-property: color, fill, transform, background-color, border-color;
-  transition-duration: var(--default-transition-duration);
-  transition-timing-function: var(--default-transition-timing-function);
-}
-a,
-button {
-  transition-property:
-    color, background-color, border-color, transform, box-shadow, opacity;
-  transition-duration: var(--default-transition-duration);
-  transition-timing-function: var(--default-transition-timing-function);
+  transition: transform 200ms var(--ease-out-expo), fill 200ms ease;
 }
 
+/* 5. Core Layout Containers */
 .canvas-container {
   width: var(--content-width);
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: auto;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  margin: 0;
+  @apply bg-background text-foreground antialiased;
   min-height: 100vh;
   cursor: var(--puffy-cursor);
   font-family: var(--font-sans);
   overflow-x: hidden;
-  width: 100%;
+  contain: content; /* Critical for browser paint optimization */
 }
 
+/* 6. Utility & Scrollbar */
 @utility rounded-squircle {
   border-radius: 20px;
 }
-a,
-button,
-[role="button"] {
-  cursor: inherit;
-}
 
-@layer base {
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-/* scrollbar */
-
-/* 1. Global Scrollbar Styling */
 html {
-  /* Reserves space globally so layout doesn't jump when content loads */
   scrollbar-gutter: stable;
+  scroll-behavior: smooth;
 }
 
-/* Chrome, Edge, and Safari */
 ::-webkit-scrollbar {
-  width: 6px; /* Slightly wider for the main body for better UX */
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -190,16 +102,14 @@ html {
 ::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: 10px;
-  border: 2px solid transparent;
   background-clip: content-box;
+  border: 1px solid transparent;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--text-secondary);
-  border: 0px solid transparent;
 }
 
-/* Firefox Support */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) transparent;

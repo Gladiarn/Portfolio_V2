@@ -26,7 +26,7 @@ const Formal = () => {
       },
     ],
     bio: [
-      "A *Full-Stack Web Developer* focused on *Next.js, TypeScript, and Tailwind CSS*. I specialize in translating *Figma* designs into high-performance, responsive interfaces using *shadcn/ui*.",
+      "A *Full-Stack Web Developer* focused on *Next.js, TypeScript, Node.js, and Tailwind CSS*. I specialize in translating *Figma* designs into high-performance, responsive interfaces using *shadcn/ui*.",
       "I engineer full-stack platforms like *TourConnect* and *DepHelp* using *Node.js, Express, and MongoDB*. My workflow includes *Postman* for API testing and *Git* for version control, with a focus on seamless deployment via *Vercel*.",
       "I leverage *AI* to optimize user experiences, specifically integrating the *Google Gemini API* for automated support. Combining *JavaScript and Django*, I build robust infrastructure that bridges the gap between smart logic and scalable web apps.",
     ],

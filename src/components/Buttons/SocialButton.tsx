@@ -15,7 +15,6 @@ const SocialButton = ({
   icon: Icon,
   name,
   href,
-  brandColor,
 }: SocialButtonProps) => {
   return (
     <a
@@ -23,44 +22,40 @@ const SocialButton = ({
       target="_blank"
       rel="noreferrer"
       className={cn(
-        "group relative flex h-11 w-11 items-center justify-center bg-card border border-border-subtle shadow-sm",
-        "transition-all duration-150 ease-out",
-        "hover:text-white hover:border-transparent active:scale-95",
+        "group relative flex h-10 w-10 items-center justify-center bg-card border border-border-subtle",
+        "transition-all duration-300 ease-out",
+        "hover:border-indigo-500/50 active:scale-95"
       )}
     >
-      {/* Decorative Corners */}
-      <Corner pos="tl" />
-      <Corner pos="tr" />
-      <Corner pos="bl" />
-      <Corner pos="br" />
+      {/* 1. Subtle HUD Corners */}
+      <Corner pos="tl" /><Corner pos="tr" /><Corner pos="bl" /><Corner pos="br" />
 
-      {/* Tooltip - Set to !transition-none so it resets instantly on leave */}
-      <span
-        style={{
-          backgroundColor: brandColor,
-          transitionTimingFunction: "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
-        }}
-        className={cn(
-          "absolute top-0 opacity-0 !transition-none pointer-events-none rounded-sm px-3 py-1",
-          "text-[10px] font-bold uppercase tracking-wider text-white shadow-md z-30",
-          // The transition ONLY applies when the group is hovered
-          "group-hover:-top-11 group-hover:opacity-100 group-hover:!transition-all group-hover:duration-300",
-        )}
-      >
-        {name}
-      </span>
+      {/* 2. Technical Tooltip (Blueprint Style) */}
+      <div className={cn(
+          "absolute -top-8 opacity-0 pointer-events-none flex items-center gap-2",
+          "transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+          "group-hover:-top-10 group-hover:opacity-100 z-30"
+      )}>
+        <span className="text-[9px] font-black uppercase tracking-[0.2em] text-indigo-500 bg-background px-2 py-0.5 border border-indigo-500/20 whitespace-nowrap shadow-xl">
+          {name}_REF
+        </span>
+        {/* Tiny connector line */}
+        <div className="w-px h-2 bg-indigo-500/40 absolute -bottom-2 left-1/2 -translate-x-1/2" />
+      </div>
 
-      {/* Hover Background Fill */}
+      {/* 3. Hover Background (Glow instead of solid fill) */}
       <div
-        style={{ backgroundColor: brandColor }}
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-10"
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-indigo-500/3"
       />
 
-      {/* Icon */}
+      {/* 4. The Icon (Indigo hover) */}
       <Icon
-        size={22}
-        className="relative z-20 text-foreground/70 transition-colors duration-150 group-hover:text-white"
+        size={18}
+        className="relative z-20 text-foreground/40 transition-all duration-300 group-hover:text-indigo-500 group-hover:scale-110"
       />
+
+      {/* 5. Bottom "Active" Bar */}
+      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 transition-all duration-500 group-hover:w-full z-20" />
     </a>
   );
 };
