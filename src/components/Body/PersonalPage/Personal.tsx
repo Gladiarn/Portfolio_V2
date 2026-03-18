@@ -1,18 +1,24 @@
-import Corner from "../../props/Corner";
+"use client";
+
+import { motion } from "framer-motion";
+import HeroSection from "./Parts/HeroSection";
 
 const Personal = () => {
   return (
-    <div className="canvas-container relative mx-auto bg-card h-screen p-4 sm:p-6 md:p-8 lg:p-12 border-l border-r border-b border-border-subtle">
-      {/* design */}
-      <Corner pos="tl" />
-      <Corner pos="tr" />
-      <Corner pos="bl" />
-      <Corner pos="br" />
-      {/* <div className="opacity-40 text-[10px] uppercase tracking-widest">
-        Section // Personal
-      </div> */}
-      s
-    </div>
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className="bg-background"
+    >
+      <div className="w-full">
+        <HeroSection />
+
+        {/* This is where you would stack future sections.
+            Example: <WorksSection /> or <AboutSection /> 
+        */}
+      </div>
+    </motion.main>
   );
 };
 
