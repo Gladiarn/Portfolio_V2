@@ -1,5 +1,4 @@
 "use client";
-import Corner from "@/components/props/Corner";
 import Image from "next/image";
 import { useState } from "react";
 import { FiGithub } from "react-icons/fi";
@@ -8,103 +7,79 @@ interface ProjectCardProps {
   title: string;
   image: string;
   githubUrl: string;
-  index: number;
 }
 
-const ProjectCard = ({ title, image, githubUrl, index }: ProjectCardProps) => {
+const ProjectCard = ({ title, image, githubUrl }: ProjectCardProps) => {
   const [isLoading, setIsLoading] = useState(true);
-  const formattedIndex = String(index + 1).padStart(2, "0");
-
-  // Matching the pattern in your ExperienceCard
-  const renderBoldText = (text: string) => {
-    return text.split(/(\*\*.*?\*\*)/).map((part, i) => {
-      if (part.startsWith("**") && part.endsWith("**")) {
-        return (
-          <strong key={i} className="font-bold text-foreground mx-0.5">
-            {part.slice(2, -2)}
-          </strong>
-        );
-      }
-      return part;
-    });
-  };
 
   return (
-    <div className="relative w-full h-50 min-h-50 overflow-hidden group border border-border-subtle rounded-md bg-card">
-      {/* 1. Skeleton Loader */}
-      {isLoading && (
-        <div className="absolute inset-0 z-30 bg-[#2a2a2a] animate-pulse flex items-center justify-center">
-          <span className="text-secondary/20 font-mono text-[10px] tracking-widest uppercase">
-            Loading Asset {formattedIndex}
-          </span>
-        </div>
-      )}
-
-      {/* 2. Base Image */}
-      <div
-        className={`absolute inset-0 grayscale-80 transition-opacity duration-700 ${
-          isLoading ? "opacity-0" : "opacity-100"
-        }`}
-      >
+    <div className="group relative w-full h-72 border border-border-subtle bg-card overflow-hidden transition-all duration-500 hover:border-indigo-500/50">
+      {/* 1. THE ASSET (Full Bleed) */}
+      <div className="absolute inset-0 z-0">
         <Image
           src={`/projects/${image}`}
           alt={title}
           fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          className={`object-cover transition-all duration-300 ease-out grayscale group-hover:grayscale-0 group-hover:scale-105 ${
+            isLoading ? "opacity-0" : "opacity-50 group-hover:opacity-100"
+          }`}
           onLoad={() => setIsLoading(false)}
         />
+
+        {/* TOP VIGNETTE: Ensures visibility for top-aligned labels on white images */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity duration-500" />
+
+        {/* BOTTOM VIGNETTE: Ensures visibility for title/button on white images */}
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
       </div>
 
-      {/* 3. The Curtain */}
-      <div className="absolute inset-0 z-10 h-0 group-hover:h-full transition-all duration-500 ease-in-out overflow-hidden bottom-0 top-auto">
-        <div className="absolute bottom-0 left-0 w-full h-50">
-          <Image
-            src={`/projects/${image}`}
-            alt={title}
-            fill
-            className="object-cover grayscale-0 brightness-105"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
+      {/* 2. TOP UI LAYER (Status & Meta) */}
+      <div className="absolute top-5 left-6 right-6 z-20 flex justify-between items-start pointer-events-none">
+        <div className="flex flex-col gap-1.5">
+          <span className="text-[7px] font-mono text-indigo-400 uppercase tracking-[0.4em] font-bold">
+            Project_Status // Active
+          </span>
+          <div className="h-px w-6 bg-indigo-500/40 group-hover:w-12 transition-all duration-500" />
         </div>
-        <div className="absolute top-0 left-0 w-full h-px bg-foreground/50" />
+
+        <span className="text-[8px] font-mono text-white/20 uppercase tracking-widest italic">
+          Verified_Asset
+        </span>
       </div>
 
-      {/* 4. Upper Left: Blueprint Label */}
-      <div className="absolute top-0 left-0 z-20 flex items-start">
-        <div className="bg-foreground text-background font-mono text-[10px] font-bold px-2 py-1 border-b border-r border-border-subtle shrink-0">
-          P_{formattedIndex}
-        </div>
-
-        <div className="bg-background border-b border-r border-border-subtle px-4 py-2 shadow-xl backdrop-blur-sm">
-          <h3 className="text-[11px] font-bold uppercase tracking-widest text-foreground flex items-center gap-2">
-            <span className="text-secondary/50 font-bold tracking-normal">
-              //
-            </span>
-            {renderBoldText(title)}
+      {/* 3. BOTTOM UI LAYER (Title & Github) */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 p-6 flex justify-between items-end gap-6 bg-linear-to-t from-black/40 to-transparent">
+        {/* Title: Pure White for maximum visibility on all backgrounds */}
+        <div className="flex flex-col gap-1 flex-1">
+          <h3 className="text-[18px] font-black uppercase italic tracking-tighter text-white leading-[1.1] drop-shadow-md">
+            {title.replace(/\*\*/g, "")}.
           </h3>
+          <span className="text-[8px] font-mono text-white/40 uppercase tracking-[0.3em]">
+            Build_Ref // 2026_Stable
+          </span>
         </div>
-      </div>
 
-      {/* 5. GitHub Button (Removed Underscores) */}
-      <div className="absolute bottom-4 right-4 z-20">
+        {/* Action: TechIcon DNA (Clean, Solid Background for visibility) */}
         <a
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="relative flex items-center gap-3 px-4 py-2 border border-border-subtle bg-background/90 hover:bg-foreground hover:text-background text-foreground transition-all duration-300 group/btn font-bold text-[10px] tracking-[0.2em] uppercase"
+          className="group/btn relative flex h-11 w-11 shrink-0 items-center justify-center border border-border-subtle bg-background hover:border-indigo-500 transition-all duration-300"
         >
-          <Corner pos="tl" />
-          <Corner pos="tr" />
-          <Corner pos="bl" />
-          <Corner pos="br" />
-          <span>View on GitHub</span>
           <FiGithub
-            size={14}
-            className="group-hover:scale-110 transition-transform"
+            size={20}
+            className="text-foreground group-hover/btn:text-indigo-500 transition-colors"
           />
+
+          {/* Exact TechIcon Tooltip Style: Centered, Background-cutout, Indigo text */}
+          <span className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover/btn:opacity-100 transition-all duration-200 pointer-events-none text-[9px] font-black uppercase tracking-[0.15em] text-indigo-500 whitespace-nowrap bg-background px-1 z-30">
+            SRC_CODE
+          </span>
         </a>
       </div>
+
+      {/* 4. ACTIVE BORDER: Subtle 1px Line */}
+      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-500 group-hover:w-full transition-all duration-700" />
     </div>
   );
 };

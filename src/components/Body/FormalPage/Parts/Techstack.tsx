@@ -29,7 +29,7 @@ const Techstack = ({ stack }: TechstackProps) => {
                 key={skill}
                 className="px-2 py-1 bg-card border border-border-subtle text-secondary/80 text-[11px] 
                            hover:border-foreground/30 hover:text-foreground
-                        rounded-sm shadow-sm whitespace-nowrap"
+                        rounded-sm whitespace-nowrap"
               >
                 {skill}
               </span>
