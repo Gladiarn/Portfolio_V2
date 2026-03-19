@@ -1,22 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { FiLinkedin } from "react-icons/fi";
-import { PiTelegramLogo, PiGithubLogo } from "react-icons/pi";
 import { useTheme } from "next-themes";
-import Slider from "../Slider";
-import { useModeStore } from "@/hooks/useModeStore";
+import { useEffect, useState } from "react";
+import { FiLinkedin } from "react-icons/fi";
+import { PiGithubLogo, PiTelegramLogo } from "react-icons/pi";
 import { TbHexagonLetterG } from "react-icons/tb";
-
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
 } from "@/components/ui/accordion";
+import { useModeStore } from "@/hooks/useModeStore";
 import MenuButton from "../Buttons/MenuButton";
 import Corner from "../props/Corner";
+import Slider from "../Slider";
 import MobileMenu from "./MobileMenu";
+
 const SOCIAL_LINKS = [
   {
     id: 1,
@@ -67,8 +67,8 @@ const Navbar = () => {
           <div className="canvas-container flex justify-between items-center w-full px-6">
             <div className="h-2 w-32 bg-border-subtle/40 rounded" />
             <div className="flex gap-4 items-center">
-               <div className="h-5 w-24 bg-border-subtle/40 rounded-full" />
-               <div className="h-4 w-20 bg-border-subtle/40 rounded" />
+              <div className="h-5 w-24 bg-border-subtle/40 rounded-full" />
+              <div className="h-4 w-20 bg-border-subtle/40 rounded" />
             </div>
           </div>
         </div>
@@ -216,6 +216,7 @@ const Navbar = () => {
               href="https://t.me/IanneTG"
               target="_blank"
               className="hidden min-[700px]:flex items-center gap-2 group shrink-0"
+              rel="noopener"
             >
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-40"></span>
@@ -232,6 +233,7 @@ const Navbar = () => {
               target="_blank"
               /* Remove duration-250 and transition-all from here. Let the CSS handle it. */
               className="group relative hidden min-[480px]:flex items-center hover:bg-foreground justify-center border border-border-subtle hover:border-foreground-hover/40 bg-card px-5 py-3 active:scale-[0.99] shrink-0"
+              rel="noopener"
             >
               <Corner pos="tl" />
               <Corner pos="tr" />

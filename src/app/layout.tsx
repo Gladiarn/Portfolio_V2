@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Geist, Geist_Mono, Syne } from "next/font/google";
+import { useEffect, useState } from "react";
 import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
-import { ThemeProvider } from "@/providers/ThemeProvider";
-import Footer from "@/components/Navbar/Footer";
 import { AnimatePresence, motion } from "framer-motion";
 import FlipLoader from "@/components/Loader/FlipLoader";
 import PageSkeleton from "@/components/Loader/PageSkeleton";
+import Footer from "@/components/Navbar/Footer";
+import Navbar from "@/components/Navbar/Navbar";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 const syne = Syne({
   variable: "--font-logo",

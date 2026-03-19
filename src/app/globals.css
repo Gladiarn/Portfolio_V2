@@ -11,7 +11,7 @@
   --foreground: #424242;
   --text-secondary: #757575;
   --border-color: #d5d5d5;
-  
+
   /* 2. Layout & Interactions */
   --content-width: 92%;
   --puffy-cursor: url("/cursor.png") 3 3, auto;
@@ -22,9 +22,21 @@
   --standard-transition: 200ms var(--ease-out-expo);
 }
 
-@media (min-width: 768px) { :root { --content-width: 720px; } }
-@media (min-width: 1024px) { :root { --content-width: 960px; } }
-@media (min-width: 1440px) { :root { --content-width: 1340px; } }
+@media (min-width: 768px) {
+  :root {
+    --content-width: 720px;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --content-width: 960px;
+  }
+}
+@media (min-width: 1440px) {
+  :root {
+    --content-width: 1340px;
+  }
+}
 
 .dark {
   --background: #080808;
@@ -43,27 +55,38 @@
   --color-border-subtle: var(--border-color);
 
   --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
-  
+
   --default-transition-duration: 200ms;
   --default-transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* 4. Optimized Interactive Transitions */
 /* Targets only properties that don't trigger layout shifts */
-a, button, [role="button"] {
-  transition-property: color, opacity, transform, background-color, border-color;
+a,
+button,
+[role="button"] {
+  transition-property:
+    color, opacity, transform, background-color, border-color;
   transition-duration: var(--default-transition-duration);
   transition-timing-function: var(--default-transition-timing-function);
   cursor: inherit;
 }
 
 /* Header/Text snappiness */
-h1, h2, h3, p, span {
-  transition: color 150ms ease, opacity 150ms ease;
+h1,
+h2,
+h3,
+p,
+span {
+  transition:
+    color 150ms ease,
+    opacity 150ms ease;
 }
 
 svg {
-  transition: transform 200ms var(--ease-out-expo), fill 200ms ease;
+  transition:
+    transform 200ms var(--ease-out-expo),
+    fill 200ms ease;
 }
 
 /* 5. Core Layout Containers */

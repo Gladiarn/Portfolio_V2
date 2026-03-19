@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Formal from "@/components/Body/FormalPage/Formal";
 import Personal from "@/components/Body/PersonalPage/Personal";
 import { useModeStore } from "@/hooks/useModeStore";
@@ -9,7 +9,7 @@ const LandingPage = () => {
   const { isFormal } = useModeStore();
   const [isHydrated, setIsHydrated] = useState(false);
 
-  // useEffect ONLY runs on the client. 
+  // useEffect ONLY runs on the client.
   // By the time this runs, Zustand has finished reading from localStorage.
   useEffect(() => {
     setIsHydrated(true);

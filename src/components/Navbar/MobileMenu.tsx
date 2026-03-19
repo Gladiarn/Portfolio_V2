@@ -68,6 +68,7 @@ const MobileMenu = ({ navigations, isFormal, toggleMode }: MobileMenuProps) => {
               href="https://t.me/IanneTG"
               target="_blank"
               className="min-[700px]:hidden flex items-center gap-2 group no-underline!"
+              rel="noopener"
             >
               <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-40"></span>
@@ -86,6 +87,7 @@ const MobileMenu = ({ navigations, isFormal, toggleMode }: MobileMenuProps) => {
               href="https://cal.com/ianne-carl-bulilan-gladiarn"
               target="_blank"
               className="min-[480px]:hidden group relative flex items-center justify-center border border-border-subtle hover:border-foreground-hover/40 bg-card px-5 py-3 active:scale-[0.99] no-underline!"
+              rel="noopener"
             >
               <Corner pos="tl" />
               <Corner pos="tr" />

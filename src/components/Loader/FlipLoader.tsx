@@ -36,7 +36,10 @@ const FlipLoader = ({ onComplete }: { onComplete: () => void }) => {
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }}
+      exit={{
+        opacity: 0,
+        transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+      }}
       className="fixed inset-0 z-9999 h-screen w-screen flex flex-col items-center justify-center bg-background antialiased overflow-hidden touch-none select-none"
     >
       {/* 1. Subtle Radial Glow */}
@@ -109,7 +112,8 @@ const FlipLoader = ({ onComplete }: { onComplete: () => void }) => {
                   key={i}
                   animate={{
                     scale: phase > 0 ? [1, 1.5, 1] : 1,
-                    backgroundColor: phase > i ? "#6366f1" : "rgba(120, 120, 120, 0.1)",
+                    backgroundColor:
+                      phase > i ? "#6366f1" : "rgba(120, 120, 120, 0.1)",
                   }}
                   transition={{ repeat: Infinity, duration: 1, delay: i * 0.2 }}
                   className="w-1 h-1 rounded-full transition-colors duration-300"

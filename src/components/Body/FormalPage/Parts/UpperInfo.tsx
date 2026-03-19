@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { FaCheck } from "react-icons/fa6";
-import { CiLocationOn } from "react-icons/ci";
 import { CgMail } from "react-icons/cg";
-import SocialButton from "@/components/Buttons/SocialButton";
+import { CiLocationOn } from "react-icons/ci";
+import { FaCheck } from "react-icons/fa6";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { PiTelegramLogo, PiXLogo } from "react-icons/pi";
 import { SiReaddotcv } from "react-icons/si";
+import SocialButton from "@/components/Buttons/SocialButton";
 
 interface Social {
   name: string;
@@ -132,7 +132,6 @@ const UpperInfo = ({ personalInformation }: UpperInfoProps) => {
             <div className="h-10 w-[1.5px] bg-indigo-500/30 group-hover:bg-indigo-500 transition-colors duration-500" />
 
             <div className="flex flex-col justify-center">
-
               <span className="text-[10px] font-black tracking-[0.3em] text-indigo-500 uppercase">
                 Email Me
               </span>

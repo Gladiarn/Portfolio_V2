@@ -1,37 +1,37 @@
 "use client";
 import {
-  SiTypescript,
-  SiJavascript,
-  SiReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiFramer,
-  SiChartdotjs,
-  SiLeaflet,
-  SiNodedotjs,
-  SiPython,
-  SiDjango,
-  SiLaravel,
-  SiPostgresql,
-  SiMongodb,
-  SiPrisma,
-  SiSupabase,
-  SiRedis,
-  SiJsonwebtokens,
   SiAuth0,
-  SiGooglegemini,
-  SiOpenai,
-  SiN8N,
-  SiDotnet,
+  SiChartdotjs,
+  SiDjango,
   SiDocker,
+  SiDotnet,
+  SiFramer,
+  SiGooglegemini,
+  SiJavascript,
+  SiJsonwebtokens,
+  SiLaravel,
+  SiLeaflet,
+  SiMongodb,
+  SiN8N,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiOpenai,
+  SiPostgresql,
+  SiPrisma,
+  SiPython,
+  SiReact,
+  SiRedis,
+  SiSupabase,
+  SiTailwindcss,
+  SiTypescript,
 } from "react-icons/si";
 import {
   TbApi,
-  TbLambda,
-  TbShieldLock,
   TbBrain,
-  TbRobot,
+  TbLambda,
   TbLoaderQuarter,
+  TbRobot,
+  TbShieldLock,
 } from "react-icons/tb";
 import TechIcon from "./TechIcon";
 
@@ -132,7 +132,9 @@ const InformationSection = () => {
           <div className="flex flex-col gap-10">
             {TECH_STACK.map((group) => (
               <div key={group.category} className="flex flex-col gap-5">
-                <span className={`text-[10px] font-black uppercase tracking-[0.4em] ${group.status === "learning" ? "text-red-500/30" : "text-foreground/30"} px-1 border-l-2 border-indigo-500/50`}>
+                <span
+                  className={`text-[10px] font-black uppercase tracking-[0.4em] ${group.status === "learning" ? "text-red-500/30" : "text-foreground/30"} px-1 border-l-2 border-indigo-500/50`}
+                >
                   {group.category}
                 </span>
                 <div className="flex flex-wrap gap-2">
@@ -159,7 +161,7 @@ const InformationSection = () => {
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500">
               {content.label}
             </span>
-            <h2 className="text-3xl font-black uppercase italic tracking-tighter text-foreground leading-none">
+            <h2 className="text-2xl font-black uppercase italic tracking-tighter text-foreground">
               {content.title}
             </h2>
           </div>

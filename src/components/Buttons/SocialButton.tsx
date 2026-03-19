@@ -16,7 +16,6 @@ const SocialButton = ({ icon: Icon, name, href }: SocialButtonProps) => {
       target="_blank"
       rel="noreferrer"
       className={cn(
-
         "group relative flex h-11 w-11 items-center justify-center border border-border-subtle",
         "hover:border-indigo-500 hover:bg-indigo-500/2 transition-all duration-300",
       )}

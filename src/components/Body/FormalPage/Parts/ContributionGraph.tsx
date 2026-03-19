@@ -1,6 +1,7 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GitHubCalendar } from "react-github-calendar";
+
 
 const ContributionGraph = () => {
   const [isMounted, setIsMounted] = useState(false);
