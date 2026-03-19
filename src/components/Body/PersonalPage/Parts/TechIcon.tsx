@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const TechIcon = ({ name, icon }: { name: string; icon: ReactNode }) => {
   return (
@@ -7,7 +7,7 @@ const TechIcon = ({ name, icon }: { name: string; icon: ReactNode }) => {
       <div className="text-xl text-foreground group-hover:text-indigo-500 transition-colors duration-300">
         {icon}
       </div>
-      
+
       {/* Tooltip: Now slightly lower and bold for readability */}
       <span className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none text-[9px] font-black uppercase tracking-[0.15em] text-indigo-500 whitespace-nowrap bg-background px-1">
         {name}

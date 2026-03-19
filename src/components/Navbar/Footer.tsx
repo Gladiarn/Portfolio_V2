@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { FiLinkedin } from "react-icons/fi";
-import { PiTelegramLogo, PiGithubLogo } from "react-icons/pi";
 import { FaHeart } from "react-icons/fa6";
+import { FiLinkedin } from "react-icons/fi";
+import { PiGithubLogo, PiTelegramLogo } from "react-icons/pi";
 import { TbHexagonLetterG } from "react-icons/tb";
 import Corner from "../props/Corner";
 

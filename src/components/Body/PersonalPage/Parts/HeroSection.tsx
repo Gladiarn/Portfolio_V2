@@ -1,9 +1,9 @@
 "use client";
 
-import Corner from "@/components/props/Corner";
-import { motion, Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
-import { SiFramer, SiFigma, SiShadcnui } from "react-icons/si";
+import { SiFigma, SiFramer, SiShadcnui } from "react-icons/si";
+import Corner from "@/components/props/Corner";
 
 const HERO_CONTENT = {
   missionTag: "// THE GOAL",
@@ -52,9 +52,7 @@ const revealVariants: Variants = {
 
 const HeroSection = () => {
   return (
-    <section className="canvas-container relative mx-auto bg-background border-x border-b border-border-subtle">
-      <Corner pos="tl" />
-      <Corner pos="tr" />
+    <section className="w-full relative mx-auto bg-background border-x border-b border-border-subtle">
       <Corner pos="bl" />
       <Corner pos="br" />
 

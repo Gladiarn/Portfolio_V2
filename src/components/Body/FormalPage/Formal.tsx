@@ -1,11 +1,12 @@
 import Corner from "@/components/props/Corner";
-import UpperInfo from "./Parts/UpperInfo";
-import Techstack from "./Parts/Techstack";
+import ContributionGraph from "./Parts/ContributionGraph";
+import EducationCard from "./Parts/EducationCard";
 import ExperienceCard from "./Parts/ExperienceCard";
 import ProjectCard from "./Parts/ProjectCard";
-import EducationCard from "./Parts/EducationCard";
 import ResearchCard from "./Parts/ResearchCard";
-import ContributionGraph from "./Parts/ContributionGraph";
+import Techstack from "./Parts/Techstack";
+import UpperInfo from "./Parts/UpperInfo";
+
 const Formal = () => {
   const responsivePadding = "p-4 sm:p-6 md:p-8 lg:p-12";
   const personalInformation = {
