@@ -11,7 +11,7 @@ const Formal = () => {
   const responsivePadding = "p-4 sm:p-6 md:p-8 lg:p-12";
   const personalInformation = {
     name: "Ianne Carl Bulilan",
-    location: "Tanauan, Leyte, Philippine",
+    location: "Tanauan, Leyte, Philippines",
     title: "Full-Stack Web Developer | Junior",
     email: "bulilaniannecarl@gmail.com",
     socials: [
