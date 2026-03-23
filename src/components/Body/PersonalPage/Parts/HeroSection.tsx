@@ -12,7 +12,7 @@ const HERO_CONTENT = {
     accent: "CLEAN INTERFACES",
     line2: "WITH SOLID CODE.",
   },
-  subquote: "Making the web look and work better",
+  subquote: "Making the web look and work betters",
   verticalBranding: "CODE // IMPLEMENTATION",
   identity: {
     firstName: "IANNE",
