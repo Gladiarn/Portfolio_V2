@@ -1,32 +1,48 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Formal from "@/components/Body/FormalPage/Formal";
-import Personal from "@/components/Body/PersonalPage/Personal";
 import { useModeStore } from "@/hooks/useModeStore";
+import { useEffect, useState, useTransition, Suspense } from "react";
+import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
 
-const LandingPage = () => {
+// Lazy load with SSR disabled
+const Formal = dynamic(() => import("@/components/Body/FormalPage/Formal"), {
+  ssr: false,
+  loading: () => <div className="min-h-screen bg-background animate-pulse" />
+});
+
+const Personal = dynamic(() => import("@/components/Body/PersonalPage/Personal"), {
+  ssr: false,
+  loading: () => <div className="min-h-screen bg-background animate-pulse" />
+});
+
+export default function LandingPage() {
   const { isFormal } = useModeStore();
-  const [isHydrated, setIsHydrated] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
-  // useEffect ONLY runs on the client.
-  // By the time this runs, Zustand has finished reading from localStorage.
   useEffect(() => {
-    setIsHydrated(true);
-  }, []);
+    if (isHomePage) {
+      setMounted(true);
+    } else {
+      setMounted(false);
+    }
+  }, [isHomePage]);
 
-  // STOP: Do not show Formal or Personal yet.
-  // We show a blank white div that matches your FlipLoader.
-  if (!isHydrated) {
-    return <div className="fixed inset-0 bg-[#FFFFFF] z-9999" />;
+  if (!isHomePage) {
+    return null;
   }
 
-  // GO: Now that we are hydrated, isFormal is correct.
   return (
-    <div className="bg-background w-full flex flex-col">
-      {isFormal ? <Formal /> : <Personal />}
+    <div className="w-full min-h-screen">
+      {mounted ? (
+        <Suspense fallback={<div className="min-h-screen bg-background" />}>
+          {isFormal ? <Formal /> : <Personal />}
+        </Suspense>
+      ) : (
+        <div className="min-h-screen bg-background" />
+      )}
     </div>
   );
-};
-
-export default LandingPage;
+}

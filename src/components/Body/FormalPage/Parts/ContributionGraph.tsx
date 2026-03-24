@@ -1,7 +1,9 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import { GitHubCalendar } from "react-github-calendar";
 
+// Move static data outside to prevent re-renders on every parent update
+const YEARS = [2026, 2025, 2024];
 
 const ContributionGraph = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -16,43 +18,49 @@ const ContributionGraph = () => {
     setIsMounted(true);
   }, []);
 
-  const theme = {
+  // Stable theme object
+  const theme = useMemo(() => ({
     dark: ["#eeeeee", "#818cf8", "#6366f1", "#4f46e5", "#3730a3"],
     light: ["#eeeeee", "#818cf8", "#6366f1", "#4f46e5", "#3730a3"],
-  };
+  }), []);
 
   const processData = useCallback((contributions: any[]) => {
-    let total = 0,
-      current = 0,
-      longest = 0,
-      tempStreak = 0;
+    // 1. Calculate everything in one pass
+    let total = 0;
+    let longest = 0;
+    let current = 0;
+    let tempStreak = 0;
 
-    contributions.forEach((day) => {
-      total += day.count;
-      tempStreak = day.count > 0 ? tempStreak + 1 : 0;
+    for (let i = 0; i < contributions.length; i++) {
+      const count = contributions[i].count;
+      total += count;
+      tempStreak = count > 0 ? tempStreak + 1 : 0;
       if (tempStreak > longest) longest = tempStreak;
-    });
+    }
 
+    // 2. Calculate Current Streak (Backwards from today)
     const lastIdx = contributions.length - 1;
-    if (
-      contributions[lastIdx]?.count > 0 ||
-      contributions[lastIdx - 1]?.count > 0
-    ) {
+    if (contributions[lastIdx]?.count > 0 || (lastIdx > 0 && contributions[lastIdx - 1]?.count > 0)) {
       for (let i = lastIdx; i >= 0; i--) {
         if (contributions[i].count > 0) current++;
         else if (i !== lastIdx) break;
       }
     }
 
-    setTimeout(
-      () =>
-        setLiveStats({ total, currentStreak: current, longestStreak: longest }),
-      0,
-    );
+    // 3. THE FIX: requestAnimationFrame defers the state update until AFTER the 
+    // browser has finished the heavy lifting of rendering the SVG grid.
+    requestAnimationFrame(() => {
+      setLiveStats((prev) => {
+        // Only trigger a re-render if the numbers actually changed
+        if (prev.total === total && prev.currentStreak === current && prev.longestStreak === longest) {
+          return prev;
+        }
+        return { total, currentStreak: current, longestStreak: longest };
+      });
+    });
+
     return contributions;
   }, []);
-
-  const years = [2026, 2025, 2024];
 
   return (
     <div className="w-full">
@@ -70,9 +78,9 @@ const ContributionGraph = () => {
           </p>
         </div>
 
-        {/* MOBILE ONLY BUTTONS: Hidden on large screens (lg) */}
+        {/* MOBILE ONLY BUTTONS */}
         <div className="flex lg:hidden gap-2">
-          {years.map((year) => (
+          {YEARS.map((year) => (
             <button
               key={year}
               type="button"
@@ -107,12 +115,12 @@ const ContributionGraph = () => {
           )}
         </div>
 
-        {/* DESKTOP ONLY SIDEBAR: Hidden on smaller screens (max-lg) */}
+        {/* DESKTOP ONLY SIDEBAR */}
         <div className="flex flex-col gap-1.5 shrink-0 min-w-17.5 max-lg:hidden">
           <span className="text-[8px] text-secondary/40 uppercase font-black tracking-widest mb-1 ml-1">
             Index
           </span>
-          {years.map((year) => (
+          {YEARS.map((year) => (
             <button
               key={year}
               type="button"
