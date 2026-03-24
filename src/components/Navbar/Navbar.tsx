@@ -37,8 +37,11 @@ const SOCIAL_LINKS = [
     icon: PiTelegramLogo,
   },
 ];
-
-const NAVIGATIONS = ["About", "Projects", "Experience"];
+const NAVIGATIONS = [
+  { label: "Portfolio", href: "/portfolio" }, 
+  { label: "Origins", href: "/origins" },
+  { label: "Experience", href: "/experience" },
+];
 
 const Navbar = () => {
   const [time, setTime] = useState(new Date());
@@ -139,7 +142,7 @@ const Navbar = () => {
               rightLabel="Light"
               labelClass="text-[8.5px]"
               containerClass="px-3 py-1.5 gap-4 bg-background"
-              pillWidth="w-[46%]"
+              pillWidth="w-[45%]"
               activeTranslate="100%"
             />
             <div className="w-px h-4.5 bg-border-subtle"></div>
@@ -169,7 +172,7 @@ const Navbar = () => {
         <div className="flex canvas-container items-center justify-between w-full px-6">
           {/* LEFT: Logo & Nav */}
           <div className="flex gap-4 md:gap-15 items-center shrink-0">
-            <div className="flex gap-2 items-center group">
+            <a href="/" className="flex gap-2 items-center group">
               <TbHexagonLetterG
                 size={32}
                 className="text-foreground transition-all group-hover:text-indigo-500"
@@ -177,20 +180,21 @@ const Navbar = () => {
               <p className="font-logo text-[18px] font-medium tracking-tight text-foreground leading-none group-hover:text-indigo-500">
                 Gladiarn
               </p>
-            </div>
+            </a>
 
             {/* Desktop Links */}
             <div className="hidden min-[1440px]:flex gap-8">
               {NAVIGATIONS.map((nav) => (
                 <Link
-                  href={`#${nav}`}
-                  key={nav}
+                  href={`${nav.href}`}
+                  key={nav.label}
+                  onClick={()=>console.log('teleporting')}
                   className="group relative text-foreground/70 font-medium tracking-tight hover:text-foreground text-[14.25px]"
                 >
                   <span className="pointer-events-none absolute -left-3.5 top-1/2 -translate-y-[45%] text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-all">
                     //
                   </span>
-                  {nav}
+                  {nav.label}
                 </Link>
               ))}
             </div>

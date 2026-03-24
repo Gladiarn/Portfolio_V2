@@ -47,6 +47,8 @@
   --puffy-cursor: url("/cursor-light.png") 3 3, auto;
 }
 
+
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

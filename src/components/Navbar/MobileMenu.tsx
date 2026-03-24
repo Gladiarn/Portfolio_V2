@@ -3,9 +3,12 @@
 import Link from "next/link";
 import Corner from "../props/Corner";
 import Slider from "../Slider";
-
+interface NavItem {
+  label: string;
+  href: string;
+}
 interface MobileMenuProps {
-  navigations: string[];
+  navigations: NavItem[];
   isFormal: boolean;
   toggleMode: () => void;
 }
@@ -22,15 +25,15 @@ const MobileMenu = ({ navigations, isFormal, toggleMode }: MobileMenuProps) => {
           <div className="flex flex-col">
             {navigations.map((nav) => (
               <Link
-                key={nav}
-                href={`#${nav}`}
+                key={nav.label}
+                href={`${nav.href}`}
                 className="group relative flex items-center justify-between py-4 border-b border-border-subtle/30 last:border-0 no-underline!"
               >
                 <span className="text-[15px] font-medium tracking-tight text-foreground/70 group-hover:text-foreground transition-all">
                   <span className="pointer-events-none absolute -left-3.5 top-1/2 -translate-y-[45%] text-[9px] font-mono text-foreground opacity-0 group-hover:opacity-100 transition-all duration-300">
                     //
                   </span>
-                  {nav}
+                  {nav.label}
                 </span>
                 <span className="text-[9px] font-mono text-foreground/20 group-hover:text-indigo-500/50 transition-all no-underline!">
                   → SHIFT_VIEW
