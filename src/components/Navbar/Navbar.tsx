@@ -16,6 +16,7 @@ import MenuButton from "../Buttons/MenuButton";
 import Corner from "../props/Corner";
 import Slider from "../Slider";
 import MobileMenu from "./MobileMenu";
+import { usePathname, useRouter } from "next/navigation";
 
 const SOCIAL_LINKS = [
   {
@@ -38,12 +39,14 @@ const SOCIAL_LINKS = [
   },
 ];
 const NAVIGATIONS = [
-  { label: "Portfolio", href: "/portfolio" }, 
+  { label: "Work", href: "/work" },
   { label: "Origins", href: "/origins" },
-  { label: "Experience", href: "/experience" },
 ];
 
 const Navbar = () => {
+  const pathname = usePathname();
+  const router = useRouter();
+
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -56,6 +59,14 @@ const Navbar = () => {
 
   const { isFormal, toggleMode } = useModeStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleModeToggle = (): void => {
+    toggleMode();
+
+    if (pathname !== "/") {
+      router.push("/");
+    }
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -188,7 +199,7 @@ const Navbar = () => {
                 <Link
                   href={`${nav.href}`}
                   key={nav.label}
-                  onClick={()=>console.log('teleporting')}
+                  onClick={() => console.log("teleporting")}
                   className="group relative text-foreground/70 font-medium tracking-tight hover:text-foreground text-[14.25px]"
                 >
                   <span className="pointer-events-none absolute -left-3.5 top-1/2 -translate-y-[45%] text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-all">
@@ -205,7 +216,7 @@ const Navbar = () => {
             {/* Slider - Grouped near actions */}
             <Slider
               isActive={isFormal}
-              onToggle={toggleMode}
+              onToggle={handleModeToggle}
               leftLabel="Personal"
               rightLabel="Formal"
               containerClass="px-5.25 py-2 gap-8 bg-card hidden min-[1024px]:flex shrink-0"
@@ -269,7 +280,7 @@ const Navbar = () => {
             <MobileMenu
               navigations={NAVIGATIONS}
               isFormal={isFormal}
-              toggleMode={toggleMode}
+              toggleMode={handleModeToggle}
             />
           </AccordionContent>
         </AccordionItem>
